@@ -52,9 +52,6 @@ class UserController extends Controller
             return response()->json(['error' => 'UnAuthorised'], 401);
         }
     }
-
-
-    
  
     /**
      * Returns Authenticated User Record
