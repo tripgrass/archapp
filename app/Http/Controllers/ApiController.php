@@ -24,7 +24,7 @@ public function accessToken(Request $request)
        }
        
    }
-Next, I will create a function through which a user can get,create,update and delete todo items.
+
    /**
     * Get a validator for an incoming Todo request.
     *
