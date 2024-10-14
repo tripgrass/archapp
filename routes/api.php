@@ -7,9 +7,16 @@ use App\Http\Controllers\UserController;
 Route::post('register', [UserController::class, 'register']);
 Route::post('login', [UserController::class, 'login']);
  
+
 Route::middleware('auth:api')->group( function () {
     Route::get('user', [UserController::class, 'userRecord']);
+    Route::get('users', [UserController::class, 'userRecords']);
 });
+
+Route::get('/artifacts', 'ArtifactController@index');
+Route::get('/artifacts/{id}', 'ArtifactController@show');
+Route::post('/artifacts', 'ArtifactController@store');
+Route::delete('/artifacts/{id}', 'ArtifactController@delete');
 /*
 Route::get('/user', function (Request $request) {
     return $request->user();
