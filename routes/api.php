@@ -14,10 +14,11 @@ Route::middleware('auth:api')->group( function () {
     Route::get('users', [UserController::class, 'userRecords']);
 });
 
-Route::get('/artifacts', 'ArtifactController@index');
-Route::get('/artifacts/{id}', 'ArtifactController@show');
-Route::post('/artifacts', 'ArtifactController@store');
-Route::delete('/artifacts/{id}', 'ArtifactController@delete');
+Route::get('/artifacts', [ArtifactController::class, 'index']);
+
+//Route::get('/artifacts/{id}', 'ArtifactController@show');
+//Route::post('/artifacts', 'ArtifactController@store');
+//Route::delete('/artifacts/{id}', 'ArtifactController@delete');
 /*
 Route::get('/user', function (Request $request) {
     return $request->user();

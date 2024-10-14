@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Artifact;
+use App\Models\Artifact;
 use App\Http\Resources\Artifact as ArtifactResource;
 use App\Http\Resources\ArtifactCollection;
 
