@@ -12,9 +12,11 @@ Route::post('login', [UserController::class, 'login']);
 Route::middleware('auth:api')->group( function () {
     Route::get('user', [UserController::class, 'userRecord']);
     Route::get('users', [UserController::class, 'userRecords']);
+//    Route::get('/artifacts', [ArtifactController::class, 'index']);
+});
+Route::middleware(['client'])->group(function () {
     Route::get('/artifacts', [ArtifactController::class, 'index']);
 });
-
 
 //Route::get('/artifacts/{id}', 'ArtifactController@show');
 //Route::post('/artifacts', 'ArtifactController@store');
