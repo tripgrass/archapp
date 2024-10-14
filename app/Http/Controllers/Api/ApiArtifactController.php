@@ -7,7 +7,7 @@ use App\Models\Artifact;
 use App\Http\Resources\Artifact as ArtifactResource;
 use App\Http\Resources\ArtifactCollection;
 use Illuminate\View\View;
-
+use App\Http\Controllers\Controller;
 
 class ApiArtifactController extends Controller
 {
