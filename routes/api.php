@@ -3,7 +3,7 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
-use App\Http\Controllers\Api\ArtifactController;
+use App\Http\Controllers\Api\ApiArtifactController;
 
 Route::post('register', [UserController::class, 'register']);
 Route::post('login', [UserController::class, 'login']);
@@ -15,7 +15,7 @@ Route::middleware('auth:api')->group( function () {
 //    Route::get('/artifacts', [ArtifactController::class, 'index']);
 });
 Route::middleware(['client'])->group(function () {
-    Route::get('/artifacts', [ArtifactController::class, 'index']);
+    Route::get('/artifacts', [ApiArtifactController::class, 'index']);
 });
 
 //Route::get('/artifacts/{id}', 'ArtifactController@show');
