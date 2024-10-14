@@ -3,9 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Player;
-use App\Http\Resources\Player as PlayerResource;
-use App\Http\Resources\PlayerCollection;
+use App\Artifact;
+use App\Http\Resources\Artifact as ArtifactResource;
+use App\Http\Resources\ArtifactCollection;
 
 class ArtifactController extends Controller
 {
