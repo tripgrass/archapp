@@ -14,9 +14,10 @@ Route::middleware('auth:api')->group( function () {
     Route::get('users', [UserController::class, 'userRecords']);
 //    Route::get('/artifacts', [ArtifactController::class, 'index']);
 });
+    Route::post('/artifacts', [ApiArtifactController::class, 'store']);
 Route::middleware(['client'])->group(function () {
     Route::get('/artifacts', [ApiArtifactController::class, 'index']);
-    Route::post('artifacts', [ApiArtifactController::class, 'store']);
+    Route::post('/artifacts', [ApiArtifactController::class, 'store']);
 });
 
 //Route::get('/artifacts/{id}', 'ArtifactController@show');
