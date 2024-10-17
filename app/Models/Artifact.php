@@ -14,7 +14,7 @@ use MatanYadaev\EloquentSpatial\Traits\HasSpatial;
  */
 class Artifact extends Model
 {
-    use HasSpatial;
+    use HasFactory, HasSpatial;
 
     protected $fillable = [
         'name',
