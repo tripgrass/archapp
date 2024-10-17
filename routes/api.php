@@ -6,7 +6,6 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\Api\ApiArtifactController;
 
 Route::post('register', [UserController::class, 'register']);
-Route::post('login', [UserController::class, 'login']);
  
 
 Route::middleware('auth:api')->group( function () {
@@ -18,6 +17,8 @@ Route::middleware(['client'])->group(function () {
     Route::get('/artifacts', [ApiArtifactController::class, 'index']);
 
     Route::post('/artifacts', [ApiArtifactController::class, 'store']);
+    Route::post('login', [UserController::class, 'login']);
+
 });
 
 //Route::get('/artifacts/{id}', 'ArtifactController@show');
