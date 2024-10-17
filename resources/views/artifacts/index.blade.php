@@ -7,7 +7,7 @@ use MatanYadaev\EloquentSpatial\Enums\Srid;
 
     $point = new Point(51.5032973, -0.1217424);
     echo $point;
-    $x = 0;
+    $x = 1;
 if( $x ){
 $londonEye = Artifact::create([
     'name' => 'London Eye',
