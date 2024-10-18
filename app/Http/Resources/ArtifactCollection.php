@@ -12,11 +12,15 @@ class ArtifactCollection extends ResourceCollection
      *
      * @return array<int|string, mixed>
      */
-    public function toArray(Request $request): array
+    public function toArray($request)
     {
-        //return parent::toArray($request);
-        return [
-            'data' => $this->collection
-        ];        
+        return $this->collection->map(function ($article) {
+            return [
+                'id' => $article->id,
+                'name' => $article->name,
+                'latitude' => $article->location->latitude,
+                'longitude' => $article->location->longitude
+            ];
+        });
     }
 }
