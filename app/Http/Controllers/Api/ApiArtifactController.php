@@ -8,6 +8,11 @@ use App\Http\Resources\Artifact as ArtifactResource;
 use App\Http\Resources\ArtifactCollection;
 use Illuminate\View\View;
 use App\Http\Controllers\Controller;
+use MatanYadaev\EloquentSpatial\SpatialBuilder;
+use MatanYadaev\EloquentSpatial\Objects\Point;
+use MatanYadaev\EloquentSpatial\Objects\Polygon;
+use MatanYadaev\EloquentSpatial\Traits\HasSpatial;
+
 
 class ApiArtifactController extends Controller
 {
