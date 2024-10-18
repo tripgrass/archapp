@@ -34,8 +34,9 @@ class ApiArtifactController extends Controller
 
     public function store(Request $request)
     {
-        
 
+return $request->all();
+die;
         $artifact = Artifact::create($request->all());
 
         return (new ArtifactResource($artifact))
