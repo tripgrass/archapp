@@ -5,14 +5,21 @@ use MatanYadaev\EloquentSpatial\Objects\LineString;
 use MatanYadaev\EloquentSpatial\Objects\Point;
 use MatanYadaev\EloquentSpatial\Enums\Srid;
 
-    $point = new Point(51.5032973, -0.1217424);
-    echo $point;
     $x = 1;
 if( $x ){
-$londonEye = Artifact::create([
-    'name' => 'London Eye',
-    'location' => new Point(51.5032973, -0.1217424),
+$n6th = Artifact::create([
+    'name' => '100 n 6th ave',
+    'location' => new Point(32.223420, -110.968570),
 ]);
+$wcong = Artifact::create([
+    'name' => 'w congress',
+    'location' => new Point(32.221830, -110.972360),
+]);
+$s4 = Artifact::create([
+    'name' => 's fourth',
+    'location' => new Point(32.208080, -110.965510),
+]);
+
 }
 ?>
 <x-app-layout>
