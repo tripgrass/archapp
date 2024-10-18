@@ -7,18 +7,18 @@ use MatanYadaev\EloquentSpatial\Enums\Srid;
 
     $x = 0;
 if( $x ){
-$n6th = Artifact::create([
-    'name' => '100 n 6th ave',
-    'location' => new Point(32.223420, -110.968570),
-]);
-$wcong = Artifact::create([
-    'name' => 'w congress',
-    'location' => new Point(32.221830, -110.972360),
-]);
-$s4 = Artifact::create([
-    'name' => 's fourth',
-    'location' => new Point(32.208080, -110.965510),
-]);
+    $n6th = Artifact::create([
+        'name' => '100 n 6th ave',
+        'location' => new Point(32.223420, -110.968570),
+    ]);
+    $wcong = Artifact::create([
+        'name' => 'w congress',
+        'location' => new Point(32.221830, -110.972360),
+    ]);
+    $s4 = Artifact::create([
+        'name' => 's fourth',
+        'location' => new Point(32.208080, -110.965510),
+    ]);
 
 }
 ?>

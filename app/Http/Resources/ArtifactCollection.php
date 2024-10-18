@@ -18,8 +18,8 @@ class ArtifactCollection extends ResourceCollection
             return [
                 'id' => $article->id,
                 'name' => $article->name,
-                'latitude' => $article->location->latitude,
-                'longitude' => $article->location->longitude
+                'latitude' => $article->location ? $article->location->latitude : null,
+                'longitude' => $article->location ? $article->location->longitude : null
             ];
         });
     }
