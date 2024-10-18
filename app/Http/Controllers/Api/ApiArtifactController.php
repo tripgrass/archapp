@@ -42,7 +42,7 @@ class ApiArtifactController extends Controller
 
 $allRequest = $request->all();
 if( isset($allRequest['latitude']) &&  isset($allRequest['longitude']) ){
-    $allRequest->location = new Point($allRequest['latitude'], $allRequest['longitude']);
+    $allRequest['location'] = new Point($allRequest['latitude'], $allRequest['longitude']);
 
 }
         $artifact = Artifact::create($allRequest);
