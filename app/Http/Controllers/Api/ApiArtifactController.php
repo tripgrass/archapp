@@ -35,9 +35,12 @@ class ApiArtifactController extends Controller
     public function store(Request $request)
     {
 
-return $request->all();
-die;
-        $artifact = Artifact::create($request->all());
+$allRequest = $request->all();
+if( $allRequest->latitude &&  $allRequest->longitude ){
+            $allRequest->location = new Point($allRequest->latitude, $allRequest->longitude);
+
+}
+        $artifact = Artifact::create($allRequest);
 
         return (new ArtifactResource($artifact))
                 ->response()
