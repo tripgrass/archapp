@@ -5,7 +5,7 @@ use MatanYadaev\EloquentSpatial\Objects\LineString;
 use MatanYadaev\EloquentSpatial\Objects\Point;
 use MatanYadaev\EloquentSpatial\Enums\Srid;
 
-    $x = 1;
+    $x = 0;
 if( $x ){
 $n6th = Artifact::create([
     'name' => '100 n 6th ave',
