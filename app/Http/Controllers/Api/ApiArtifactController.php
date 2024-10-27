@@ -61,7 +61,7 @@ Log::debug(print_r($request->all(),true));
             $image->move(public_path('images'), $imageName);
   
             // Add image information to the array
-            $images[] = ['name' => $imageName];
+            $imageData = ['name' => $imageName];
             $image = Image::create($imageData);
 
             //$artifacts  = [1, 2];
