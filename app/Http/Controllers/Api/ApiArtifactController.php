@@ -52,27 +52,16 @@ Log::debug('api artifact controller');
 Log::debug(print_r($request->all(),true));
 /* IMAGE */
 
-$images = [];
-          Log::debug('An informational message.');
-          $requestImages = explode( "," , $request->images );
-        // Process each uploaded image
-        foreach($requestImages as $image) {
-                    Log::debug(print_r($image,true));
-
-            // Generate a unique name for the image
+        if(isset($allRequest['images'])){
+            $image = $allRequest['images'];
             $imageName = time() . '_' . uniqid() . '.' . pathinfo($image, PATHINFO_EXTENSION);
-          Log::debug('imagename.' . $imageName);
-              
-Log::debug(print_r($image,true));
+            Log::debug('imagename.' . $imageName);  
+            Log::debug(print_r($image,true));
             // Move the image to the desired location
             $image->move(public_path('images'), $imageName);
   
             // Add image information to the array
             $images[] = ['name' => $imageName];
-        }
-  
-        // Store images in the database using create method
-        foreach ($images as $imageData) {
             $image = Image::create($imageData);
 
             //$artifacts  = [1, 2];
