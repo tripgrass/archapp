@@ -21,6 +21,10 @@ class Artifact extends Model
         'name',
         'location',
         'area',
+        'address',
+        'city',
+        'state',
+        'zipcode'
     ];
 
     protected $casts = [
