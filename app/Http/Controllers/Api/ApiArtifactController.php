@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Api;
 
 use Illuminate\Http\Request;
 use App\Models\Artifact;
+use App\Models\Image;
+
 use App\Http\Resources\Artifact as ArtifactResource;
 use App\Http\Resources\ArtifactCollection;
 use Illuminate\View\View;
@@ -48,6 +50,35 @@ if( isset($allRequest['latitude']) &&  isset($allRequest['longitude']) ){
 }
 Log::debug('api artifact controller');
 Log::debug(print_r($request->all(),true));
+/* IMAGE */
+
+$images = [];
+          Log::debug('An informational message.');
+
+        // Process each uploaded image
+        foreach($request->images as $image) {
+                    Log::debug(print_r($image,true));
+
+            // Generate a unique name for the image
+            $imageName = time() . '_' . uniqid() . '.' . $image->getClientOriginalExtension();
+              
+            // Move the image to the desired location
+            $image->move(public_path('images'), $imageName);
+  
+            // Add image information to the array
+            $images[] = ['name' => $imageName];
+        }
+  
+        // Store images in the database using create method
+        foreach ($images as $imageData) {
+            $image = Image::create($imageData);
+
+            //$artifacts  = [1, 2];
+
+            //$image->artifacts()->attach($artifacts);            
+        }
+
+/* END IMAGE */
 
         $artifact = Artifact::create($allRequest);
 
