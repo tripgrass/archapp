@@ -45,6 +45,9 @@ if( isset($allRequest['latitude']) &&  isset($allRequest['longitude']) ){
     $allRequest['location'] = new Point($allRequest['latitude'], $allRequest['longitude']);
 
 }
+Log::debug('api artifact controller');
+Log::debug(print_r($request->all(),true));
+
         $artifact = Artifact::create($allRequest);
 
         return (new ArtifactResource($artifact))

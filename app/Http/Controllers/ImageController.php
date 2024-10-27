@@ -30,7 +30,6 @@ class ImageController extends Controller
     public function store(Request $request): RedirectResponse
     {
 
-                    Log::debug(print_r($request->all(),true));
         // Validate incoming request data
         $request->validate([
             'images' => 'required|array'
@@ -59,9 +58,9 @@ class ImageController extends Controller
         foreach ($images as $imageData) {
             $image = Image::create($imageData);
 
-            $artifacts  = [1, 2];
+            //$artifacts  = [1, 2];
 
-            $image->artifacts()->attach($artifacts);            
+            //$image->artifacts()->attach($artifacts);            
         }
           
         return back()->with('success', 'Images uploaded successfully!')
