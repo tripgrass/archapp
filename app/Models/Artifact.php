@@ -31,4 +31,9 @@ class Artifact extends Model
         'location' => Point::class,
         'area' => Polygon::class,
     ];
+
+    public function images()
+    {
+        return $this->belongsToMany(Images::class, 'artifacts_images', 'artifacts_id','images_id');
+    } 
 }

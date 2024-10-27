@@ -12,4 +12,9 @@ class Image extends Model
     protected $fillable = [
         'name'
     ];
+
+    public function artifacts()
+    {
+        return $this->belongsToMany(Artifact::class, 'artifacts_images', 'images_id', 'artifacts_id');
+    }    
 }

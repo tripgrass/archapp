@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
     
 use Illuminate\Http\Request;
 use App\Models\Image;
+use App\Models\Artifact;
 use Illuminate\View\View;
 //use App\Http\Controllers\Log;
 use Illuminate\Support\Facades\Log;
@@ -35,6 +36,7 @@ class ImageController extends Controller
             'images' => 'required|array'
         ]);
   
+
         // Initialize an array to store image information
         $images = [];
           Log::debug('An informational message.');
@@ -55,7 +57,11 @@ class ImageController extends Controller
   
         // Store images in the database using create method
         foreach ($images as $imageData) {
-            Image::create($imageData);
+            $image = Image::create($imageData);
+
+            $artifacts  = [1, 2];
+
+            $image->artifacts()->attach($artifacts);            
         }
           
         return back()->with('success', 'Images uploaded successfully!')
