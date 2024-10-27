@@ -60,8 +60,10 @@ $images = [];
                     Log::debug(print_r($image,true));
 
             // Generate a unique name for the image
-            $imageName = time() . '_' . uniqid() . '.' . $image->getClientOriginalExtension();
+            $imageName = time() . '_' . uniqid() . '.' . pathinfo($image, PATHINFO_EXTENSION);
+          Log::debug('imagename.' . $imageName);
               
+Log::debug(print_r($image,true));
             // Move the image to the desired location
             $image->move(public_path('images'), $imageName);
   
