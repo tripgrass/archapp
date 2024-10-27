@@ -54,9 +54,9 @@ Log::debug(print_r($request->all(),true));
 
 $images = [];
           Log::debug('An informational message.');
-
+          $requestImages = explode( "," , $request->images );
         // Process each uploaded image
-        foreach($request->images as $image) {
+        foreach($requestImages as $image) {
                     Log::debug(print_r($image,true));
 
             // Generate a unique name for the image
