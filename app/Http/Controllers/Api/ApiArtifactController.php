@@ -60,7 +60,7 @@ Log::debug(print_r($request->all(),true));
             // Move the image to the desired location
             $image->move(public_path('images'), $imageName);
 
-$filepath = public_path('images/'.$imageNmae);
+$filepath = public_path('images/'.$imageName);
 
 try {
     \Tinify\setKey(env("TINIFY_API_KEY"));
