@@ -57,7 +57,7 @@ Log::debug(print_r($request->all(),true));
             $images = explode(",", $imagesString);
             foreach( $images as $image ){
                 //$image = $allRequest['images'];
-                $imageName = time() . '_' . uniqid() . '.' . $request->images->extension();
+                $imageName = time() . '_' . uniqid() . '.' . $image->extension();
             Log::debug('imagename.' . $imageName);  
                 Log::debug(print_r($image,true));
                 // Move the image to the desired location
