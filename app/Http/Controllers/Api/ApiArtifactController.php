@@ -87,9 +87,9 @@ Log::debug(print_r($request->all(),true));
                 $imageData = ['name' => $imageName];
                 $newImage = Image::create($imageData);
 
-                //$artifacts  = [1, 2];
+                $artifacts  = [1, 2];
 
-                //$image->artifacts()->attach($artifacts);            
+                $newImage->artifacts()->attach($artifacts);            
             }
         }
 
