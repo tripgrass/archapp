@@ -30,7 +30,7 @@ use MatanYadaev\EloquentSpatial\Enums\Srid;
                     </ul>
                     <?php if( $artifact->images ) : ?>
                         <?php foreach( $artifact->images as $image ) : ?>
-                            <img src="<?php echo public_path('images') . "\\" . $image->name ; ?>">
+                            <img src="{{URL::asset('/images/' .  $image->name )}}"  height="auto" width="200">
                         <?php endforeach; ?>
                     <?php endif ?>
                 </div>
