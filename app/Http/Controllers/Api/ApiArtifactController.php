@@ -61,7 +61,7 @@ Log::debug(print_r($request->all(),true));
                 $image->move(public_path('images'), $imageName);
 
                 $filepath = public_path('images/'.$imageName);
-
+/*
                 try {
                     \Tinify\setKey(env("TINIFY_API_KEY"));
                     $source = \Tinify\fromFile($filepath);
@@ -82,7 +82,7 @@ Log::debug(print_r($request->all(),true));
                     // Something else went wrong, unrelated to the Tinify API.
                     return redirect('upload')->with('error', $e->getMessage());
                 }            
-      
+      */
                 // Add image information to the array
                 $imageData = ['name' => $imageName];
                 $newImage = Image::create($imageData);
