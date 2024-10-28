@@ -1,27 +1,38 @@
+<?php
+use App\Models\Artifact;
+use MatanYadaev\EloquentSpatial\Objects\Polygon;
+use MatanYadaev\EloquentSpatial\Objects\LineString;
+use MatanYadaev\EloquentSpatial\Objects\Point;
+use MatanYadaev\EloquentSpatial\Enums\Srid;
+
+?>
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __('Profile') }}
+            {{ __('Artifacts') }}
         </h2>
-    </x-slot>
 
+        <ul class="">
+            <li><a href="{{ URL::to('artifacts') }}">View All artifacts</a></li>
+            <li><a href="{{ URL::to('artifacts/create') }}">Create a artifact</a>
+        </ul>
+    </nav>
+    </x-slot>
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 space-y-6">
-            <div class="p-4 sm:p-8 bg-white shadow sm:rounded-lg">
-                <div class="max-w-xl">
-                    @include('profile.partials.update-profile-information-form')
-                </div>
-            </div>
 
             <div class="p-4 sm:p-8 bg-white shadow sm:rounded-lg">
-                <div class="max-w-xl">
-                    @include('profile.partials.update-password-form')
-                </div>
-            </div>
+                <div class="max-w-max">
 
-            <div class="p-4 sm:p-8 bg-white shadow sm:rounded-lg">
-                <div class="max-w-xl">
-                    @include('profile.partials.delete-user-form')
+                    <h2><?php echo $artifact->name; ?></h2>
+                    <ul>
+                        <li></li>
+                    </ul>
+                    <?php if( $artifact->images ) : ?>
+                        <?php foreach( $artifact->images as $image ) : ?>
+                            <img src="<?php echo public_path('images') . "\\" . $image->name ; ?>">
+                        <?php endforeach; ?>
+                    <?php endif ?>
                 </div>
             </div>
         </div>

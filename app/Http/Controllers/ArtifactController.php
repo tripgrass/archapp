@@ -31,7 +31,9 @@ class ArtifactController extends Controller
 
     public function show($id)
     {
-        return new ArtifactResource(Artifact::findOrFail($id));
+        $artifact = Artifact::findOrFail($id);
+//        $artifacts = artifact::all();
+        return view('artifacts.show', ['artifact' => $artifact]);
     }
 
     public function store(Request $request)
