@@ -53,43 +53,44 @@ Log::debug(print_r($request->all(),true));
 /* IMAGE */
 
         if(isset($allRequest['images'])){
-            $image = $allRequest['images'];
-            $imageName = time() . '_' . uniqid() . '.' . $request->images->extension();
-        Log::debug('imagename.' . $imageName);  
-            Log::debug(print_r($image,true));
-            // Move the image to the desired location
-            $image->move(public_path('images'), $imageName);
+            foreach( $allRequest['images'] as $image ){
+                $imageName = time() . '_' . uniqid() . '.' . $image->extension();
+                Log::debug('imagename.' . $imageName);  
+                Log::debug(print_r($image,true));
+                // Move the image to the desired location
+                $image->move(public_path('images'), $imageName);
 
-$filepath = public_path('images/'.$imageName);
+                $filepath = public_path('images/'.$imageName);
 
-try {
-    \Tinify\setKey(env("TINIFY_API_KEY"));
-    $source = \Tinify\fromFile($filepath);
-    $source->toFile($filepath);
-} catch(\Tinify\AccountException $e) {
-    // Verify your API key and account limit.
-    return redirect('upload')->with('error', $e->getMessage());
-} catch(\Tinify\ClientException $e) {
-    // Check your source image and request options.
-    return redirect('upload')->with('error', $e->getMessage());
-} catch(\Tinify\ServerException $e) {
-    // Temporary issue with the Tinify API.
-    return redirect('upload')->with('error', $e->getMessage());
-} catch(\Tinify\ConnectionException $e) {
-    // A network connection error occurred.
-    return redirect('upload')->with('error', $e->getMessage());
-} catch(Exception $e) {
-    // Something else went wrong, unrelated to the Tinify API.
-    return redirect('upload')->with('error', $e->getMessage());
-}            
-  
-            // Add image information to the array
-            $imageData = ['name' => $imageName];
-            $image = Image::create($imageData);
+                try {
+                    \Tinify\setKey(env("TINIFY_API_KEY"));
+                    $source = \Tinify\fromFile($filepath);
+                    $source->toFile($filepath);
+                } catch(\Tinify\AccountException $e) {
+                    // Verify your API key and account limit.
+                    return redirect('upload')->with('error', $e->getMessage());
+                } catch(\Tinify\ClientException $e) {
+                    // Check your source image and request options.
+                    return redirect('upload')->with('error', $e->getMessage());
+                } catch(\Tinify\ServerException $e) {
+                    // Temporary issue with the Tinify API.
+                    return redirect('upload')->with('error', $e->getMessage());
+                } catch(\Tinify\ConnectionException $e) {
+                    // A network connection error occurred.
+                    return redirect('upload')->with('error', $e->getMessage());
+                } catch(Exception $e) {
+                    // Something else went wrong, unrelated to the Tinify API.
+                    return redirect('upload')->with('error', $e->getMessage());
+                }            
+      
+                // Add image information to the array
+                $imageData = ['name' => $imageName];
+                $newImage = Image::create($imageData);
 
-            //$artifacts  = [1, 2];
+                //$artifacts  = [1, 2];
 
-            //$image->artifacts()->attach($artifacts);            
+                //$image->artifacts()->attach($artifacts);            
+            }
         }
 
 /* END IMAGE */
