@@ -54,8 +54,8 @@ Log::debug(print_r($request->all(),true));
 
         if(isset($allRequest['images'])){
             $image = $allRequest['images'];
-            $imageName = time() . '_' . uniqid() . '.' . pathinfo($image, PATHINFO_EXTENSION);
-            Log::debug('imagename.' . $imageName);  
+            $imageName = time() . '_' . uniqid() . '.' . $request->images->extension();
+        Log::debug('imagename.' . $imageName);  
             Log::debug(print_r($image,true));
             // Move the image to the desired location
             $image->move(public_path('images'), $imageName);
