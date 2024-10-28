@@ -19,7 +19,6 @@ if( $x ){
         'name' => 's fourth',
         'location' => new Point(32.208080, -110.965510),
     ]);
-
 }
 ?>
 <x-app-layout>
@@ -46,21 +45,31 @@ if( $x ){
                             <tr>
                                 <td class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider border-b">ID</td>
                                 <td class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider border-b">Name</td>
-                                <td class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider border-b">Email</td>
-                                <td class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider border-b">artifact Level</td>
+                                <td class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider border-b">Address</td>
+                                <td class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider border-b">Lat/Lon</td>
+                                <td class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider border-b">#Pics</td>
                                 <td class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider border-b">Actions</td>
                             </tr>
                         </thead>
                         <tbody>
                         @foreach($artifacts as $key => $value)
-                        <?php print_r($value);
-                        echo $value->location->latitude; 
+                        <?php
+                        $geo = ""; 
+                        if( $value->location && $value->location->latitude ){
+                            $geo .= $value->location->latitude;
+                        }
+                        if( $value->location && $value->location->longitude ){
+                            $geo .= ", " . $value->location->longitude;
+                        }                        
+                        //print_r($value);
+//                        echo $value->location->latitude; 
                          ?>
                             <tr class="bg-gray-100 border-b">
                                 <td class="px-6 py-4 whitespace-nowrap">{{ $value->id }}</td>
                                 <td class="px-6 py-4 whitespace-nowrap">{{ $value->name }}</td>
-                                <td class="px-6 py-4 whitespace-nowrap">{{ $value->email }}</td>
-                                <td class="px-6 py-4 whitespace-nowrap">{{ $value->artifact_level }}</td>
+                                <td class="px-6 py-4 whitespace-nowrap">{{ $value->address }}</td>
+                                <td class="px-6 py-4 whitespace-nowrap">{{ $geo }}</td>
+                                <td class="px-6 py-4 whitespace-nowrap">{{ count($value->images) }}</td>
 
                                 <!-- we will also add show, edit, and delete buttons -->
                                 <td class="px-6 py-4 whitespace-nowrap">
