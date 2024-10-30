@@ -27,6 +27,7 @@ class Artifact extends JsonResource
             'eloGroup'   => $this->eloGroup,            
             'created_at' => $this->created_at,
             'updated_at' => $this->updated_at,
+            'images'     => $this->images
         ];        
     }
 }
