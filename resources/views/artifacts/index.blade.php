@@ -47,6 +47,7 @@ if( $x ){
                                 <td class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider border-b">Name</td>
                                 <td class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider border-b">Address</td>
                                 <td class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider border-b">Lat/Lon</td>
+                                <td class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider border-b">EloGroup</td>
                                 <td class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider border-b">#Pics</td>
                                 <td class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider border-b">Actions</td>
                             </tr>
@@ -69,6 +70,7 @@ if( $x ){
                                 <td class="px-6 py-4 whitespace-nowrap">{{ $value->name }}</td>
                                 <td class="px-6 py-4 whitespace-nowrap">{{ $value->address }}</td>
                                 <td class="px-6 py-4 whitespace-nowrap">{{ $geo }}</td>
+                                <td class="px-6 py-4 whitespace-nowrap">{{ $value->eloGroup }}</td>
                                 <td class="px-6 py-4 whitespace-nowrap">{{ count($value->images) }}</td>
 
                                 <!-- we will also add show, edit, and delete buttons -->

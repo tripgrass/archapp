@@ -13,8 +13,8 @@ return new class extends Migration
     {
         Schema::create('artifacts_images', function (Blueprint $table) {
                 $table->id();
-                $table->unsignedBiginteger('artifacts_id')->unsigned();
-                $table->unsignedBiginteger('images_id')->unsigned();
+                $table->biginteger('artifacts_id');
+                $table->biginteger('images_id');
 
                 $table->foreign('artifacts_id')->references('id')
                      ->on('artifacts')->onDelete('cascade');

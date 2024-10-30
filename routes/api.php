@@ -16,6 +16,7 @@ Route::middleware('auth:api')->group( function () {
 });
 Route::middleware(['client'])->group(function () {
     Route::get('/artifacts', [ApiArtifactController::class, 'index']);
+    Route::get('/artifacts/{id}', [ApiArtifactController::class, 'show']);
 
     Route::post('/artifacts', [ApiArtifactController::class, 'store']);
     Route::post('/artifacts/store', [ApiArtifactController::class, 'store']);
