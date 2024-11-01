@@ -26,7 +26,8 @@ class Artifact extends Model
         'city',
         'state',
         'zipcode',
-        'eloGroup'
+        'eloGroup',
+        'scale'
     ];
 
     protected $casts = [

@@ -25,6 +25,7 @@ class Artifact extends JsonResource
             'state'   => $this->state,
             'zipcode'   => $this->zipcode,
             'eloGroup'   => $this->eloGroup,            
+            'scale'   =>    $this->scale,            
             'created_at' => $this->created_at,
             'updated_at' => $this->updated_at,
             'images'     => $this->images
