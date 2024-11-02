@@ -43,25 +43,21 @@ class ApiArtifactController extends Controller
     public function store(Request $request)
     {
 
-$allRequest = $request->all();
-if( isset($allRequest['latitude']) &&  isset($allRequest['longitude']) ){
-    $allRequest['location'] = new Point($allRequest['latitude'], $allRequest['longitude']);
+        $allRequest = $request->all();
+        if( isset($allRequest['latitude']) &&  isset($allRequest['longitude']) ){
+            $allRequest['location'] = new Point($allRequest['latitude'], $allRequest['longitude']);
 
-}
-Log::debug('api artifact controller');
-Log::debug(print_r($request->all(),true));
-/* IMAGE */
-
+        }
+        /* IMAGE */
         if(isset($allRequest['images'])){
             foreach( $allRequest['images'] as $image ){
                 $imageName = time() . '_' . uniqid() . '.' . $image->extension();
-                Log::debug('imagename.' . $imageName);  
-                Log::debug(print_r($image,true));
+
                 // Move the image to the desired location
                 $image->move(public_path('images'), $imageName);
 
                 $filepath = public_path('images/'.$imageName);
-/*
+                /*
                 try {
                     \Tinify\setKey(env("TINIFY_API_KEY"));
                     $source = \Tinify\fromFile($filepath);
@@ -82,7 +78,7 @@ Log::debug(print_r($request->all(),true));
                     // Something else went wrong, unrelated to the Tinify API.
                     return redirect('upload')->with('error', $e->getMessage());
                 }            
-      */
+                */
                 // Add image information to the array
                 $imageData = ['name' => $imageName];
                 $newImage = Image::create($imageData);
@@ -93,7 +89,7 @@ Log::debug(print_r($request->all(),true));
             }
         }
 
-/* END IMAGE */
+        /* END IMAGE */
 
         $artifact = Artifact::create($allRequest);
 
