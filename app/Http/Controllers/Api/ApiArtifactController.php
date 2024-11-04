@@ -92,7 +92,7 @@ class ApiArtifactController extends Controller
 
         /* END IMAGE */
         if( $allRequest['id'] ){
-            $artifact = Artifact::update($allRequest);
+            $artifact = (new Artifact)->update($allRequest);
         }
         else{
             $artifact = Artifact::create($allRequest);
