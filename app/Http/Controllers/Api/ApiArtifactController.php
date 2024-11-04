@@ -92,7 +92,11 @@ class ApiArtifactController extends Controller
 
         /* END IMAGE */
         if( $allRequest['id'] ){
-            $artifact = (new Artifact)->update($allRequest);
+            $artifact = Artifact::find( $allRequest['id'] );
+            foreach( $allRequest as $key => $val){
+                $artifact[$key] = $val;
+            } 
+            $artifact->save();
         }
         else{
             $artifact = Artifact::create($allRequest);
