@@ -91,7 +91,7 @@ class ApiArtifactController extends Controller
         }
 
         /* END IMAGE */
-        if( $allRequest['id'] ){
+        if( isset($allRequest['id']) && $allRequest['id'] ){
             $artifact = Artifact::find( $allRequest['id'] );
             foreach( $allRequest as $key => $val){
                 $artifact[$key] = $val;
