@@ -46,7 +46,8 @@ class ApiArtifactController extends Controller
         $allRequest = $request->all();
         if( isset($allRequest['latitude']) &&  isset($allRequest['longitude']) ){
             $allRequest['location'] = new Point($allRequest['latitude'], $allRequest['longitude']);
-
+            unset( $allRequest['latitude'] );
+            unset( $allRequest['longitude'] );
         }
         /* IMAGE */
         if(isset($allRequest['images'])){
