@@ -91,7 +91,7 @@ class ApiArtifactController extends Controller
 
         /* END IMAGE */
 
-        $artifact = Artifact::create($allRequest);
+        $artifact = Artifact::updateOrCreate($allRequest);
 
         return (new ArtifactResource($artifact))
                 ->response()
