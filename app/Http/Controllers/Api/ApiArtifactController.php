@@ -91,13 +91,13 @@ class ApiArtifactController extends Controller
         }
 
         /* END IMAGE */
-        if( $allRequest->id ){
+        if( $allRequest['id'] ){
             $artifact = Artifact::update($allRequest);
         }
         else{
             $artifact = Artifact::create($allRequest);
         }
-        
+
         return (new ArtifactResource($artifact))
                 ->response()
                 ->setStatusCode(201);
