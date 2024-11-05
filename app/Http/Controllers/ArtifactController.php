@@ -35,6 +35,14 @@ class ArtifactController extends Controller
 //        $artifacts = artifact::all();
         return view('artifacts.show', ['artifact' => $artifact]);
     }
+    public function edit( $id)
+    {
+
+        $artifact = Artifact::findOrFail($id);
+//        $artifacts = artifact::all();
+        return view('artifacts.create', ['artifact' => $artifact]);
+
+    }    
 
     public function store(Request $request)
     {
@@ -48,6 +56,7 @@ class ArtifactController extends Controller
                 ->response()
                 ->setStatusCode(201);
     }
+
 
     public function delete($id)
     {

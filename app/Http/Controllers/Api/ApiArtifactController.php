@@ -49,6 +49,18 @@ class ApiArtifactController extends Controller
             unset( $allRequest['latitude'] );
             unset( $allRequest['longitude'] );
         }
+        /* END IMAGE */
+        if( isset($allRequest['id']) && $allRequest['id'] ){
+            $artifact = Artifact::find( $allRequest['id'] );
+            foreach( $allRequest as $key => $val){
+                $artifact[$key] = $val;
+            } 
+            $artifact->save();
+        }
+        else{
+            $artifact = Artifact::create($allRequest);
+        }
+
         /* IMAGE */
         if(isset($allRequest['images'])){
             foreach( $allRequest['images'] as $image ){
@@ -84,22 +96,10 @@ class ApiArtifactController extends Controller
                 $imageData = ['name' => $imageName];
                 $newImage = Image::create($imageData);
 
-                $artifacts  = [1, 2];
+                //$artifacts  = [1, 2];
 
-                $newImage->artifacts()->attach($artifacts);            
+                $newImage->artifacts()->attach($artifact);            
             }
-        }
-
-        /* END IMAGE */
-        if( isset($allRequest['id']) && $allRequest['id'] ){
-            $artifact = Artifact::find( $allRequest['id'] );
-            foreach( $allRequest as $key => $val){
-                $artifact[$key] = $val;
-            } 
-            $artifact->save();
-        }
-        else{
-            $artifact = Artifact::create($allRequest);
         }
 
         return (new ArtifactResource($artifact))
