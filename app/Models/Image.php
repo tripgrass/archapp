@@ -11,13 +11,9 @@ class Image extends Model
   
     protected $fillable = [
         'name',
-        'rating_signatory',
-        'rating_demos'
     ];
 
     protected $attributes = [
-        'rating_signatory' => 0,
-        'rating_demos' => 0
     ];    
 
     public function artifacts()
