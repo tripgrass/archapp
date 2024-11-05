@@ -52,6 +52,8 @@ class ApiArtifactController extends Controller
         /* END IMAGE */
         if( isset($allRequest['id']) && $allRequest['id'] ){
             $artifact = Artifact::find( $allRequest['id'] );
+            $images = $allRequest['images'];
+            unset( $allRequest['images'] );
             foreach( $allRequest as $key => $val){
                 $artifact[$key] = $val;
             } 
@@ -62,8 +64,8 @@ class ApiArtifactController extends Controller
         }
 
         /* IMAGE */
-        if(isset($allRequest['images'])){
-            foreach( $allRequest['images'] as $image ){
+        if(isset($images)){
+            foreach( $images as $image ){
                 $imageName = time() . '_' . uniqid() . '.' . $image->extension();
 
                 // Move the image to the desired location
@@ -100,6 +102,7 @@ class ApiArtifactController extends Controller
 
                 $newImage->artifacts()->attach($artifact);            
             }
+
         }
 
         return (new ArtifactResource($artifact))
