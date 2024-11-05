@@ -49,11 +49,15 @@ class ApiArtifactController extends Controller
             unset( $allRequest['latitude'] );
             unset( $allRequest['longitude'] );
         }
+        if( isset($allRequest['images']) && $allRequest['images']){
+            $images = $allRequest['images'];
+            unset( $allRequest['images'] );
+        }
+
+
         /* END IMAGE */
         if( isset($allRequest['id']) && $allRequest['id'] ){
             $artifact = Artifact::find( $allRequest['id'] );
-            $images = $allRequest['images'];
-            unset( $allRequest['images'] );
             foreach( $allRequest as $key => $val){
                 $artifact[$key] = $val;
             } 
