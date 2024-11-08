@@ -68,9 +68,9 @@ class ApiArtifactController extends Controller
         }
 
         /* IMAGE */
+        if(isset($images)){
         Log::error('print_r($images,true)');
         Log::error(print_r($images,true));
-        if(isset($images)){
             foreach( $images as $image ){
                 $imageName = time() . '_' . uniqid() . '.' . $image->extension();
 
