@@ -52,9 +52,14 @@ class ApiArtifactController extends Controller
             unset( $allRequest['latitude'] );
             unset( $allRequest['longitude'] );
         }
+
+        $source = "";
         if( isset($allRequest['images']) && $allRequest['images']){
             $images = $allRequest['images'];
             unset( $allRequest['images'] );
+            if( isset($allRequest['source']) ){
+                $source = $allRequest['source'];
+            }
         }
 
 
@@ -75,41 +80,67 @@ class ApiArtifactController extends Controller
         Log::error('print_r($images,true)');
         Log::error(print_r($images,true));
             foreach( $images as $image ){
-                $imageName = time() . '_' . uniqid() . '.' . $image->extension();
+                if( 'web' == $source ){
+                    $imgdata = base64_decode($image->uri);
+                    $f = finfo_open();
+                    $mime_type = "." . explode("/", finfo_buffer($f, $imgdata, FILEINFO_MIME_TYPE))[1];
+                    $img = $image->uri;
+                    $image_parts = explode(";base64,", $img);
+                    $image_type_aux = explode("image/", $image_parts[0]);
+                    $image_type = $image_type_aux[1];
+                    $image_base64 = base64_decode($image_parts[1]);
 
-                // Move the image to the desired location
-                $image->move(public_path('images'), $imageName);
+//                    $file = public_path() . '/uploads/'. "." . $image_type;
+  //                  file_put_contents($file, $image_base64);
 
-                $filepath = public_path('images/'.$imageName);
-                /*
-                try {
-                    \Tinify\setKey(env("TINIFY_API_KEY"));
-                    $source = \Tinify\fromFile($filepath);
-                    $source->toFile($filepath);
-                } catch(\Tinify\AccountException $e) {
-                    // Verify your API key and account limit.
-                    return redirect('upload')->with('error', $e->getMessage());
-                } catch(\Tinify\ClientException $e) {
-                    // Check your source image and request options.
-                    return redirect('upload')->with('error', $e->getMessage());
-                } catch(\Tinify\ServerException $e) {
-                    // Temporary issue with the Tinify API.
-                    return redirect('upload')->with('error', $e->getMessage());
-                } catch(\Tinify\ConnectionException $e) {
-                    // A network connection error occurred.
-                    return redirect('upload')->with('error', $e->getMessage());
-                } catch(Exception $e) {
-                    // Something else went wrong, unrelated to the Tinify API.
-                    return redirect('upload')->with('error', $e->getMessage());
-                }            
-                */
-                // Add image information to the array
-                $imageData = ['name' => $imageName];
-                $newImage = Image::create($imageData);
+                    $imageName = time() . '_' . uniqid() . '.' . $image_type;
+                    $image->move(public_path('images'), $imageName);
+                    $filepath = public_path('images/'.$imageName);
 
-                //$artifacts  = [1, 2];
+                    $imageData = ['name' => $imageName];
+                    $newImage = Image::create($imageData);
 
-                $newImage->artifacts()->attach($artifact);            
+                    //$artifacts  = [1, 2];
+
+                    $newImage->artifacts()->attach($artifact);            
+                }
+                else{
+                    $imageName = time() . '_' . uniqid() . '.' . $image->extension();
+
+                    // Move the image to the desired location
+                    $image->move(public_path('images'), $imageName);
+
+                    $filepath = public_path('images/'.$imageName);
+                    /*
+                    try {
+                        \Tinify\setKey(env("TINIFY_API_KEY"));
+                        $source = \Tinify\fromFile($filepath);
+                        $source->toFile($filepath);
+                    } catch(\Tinify\AccountException $e) {
+                        // Verify your API key and account limit.
+                        return redirect('upload')->with('error', $e->getMessage());
+                    } catch(\Tinify\ClientException $e) {
+                        // Check your source image and request options.
+                        return redirect('upload')->with('error', $e->getMessage());
+                    } catch(\Tinify\ServerException $e) {
+                        // Temporary issue with the Tinify API.
+                        return redirect('upload')->with('error', $e->getMessage());
+                    } catch(\Tinify\ConnectionException $e) {
+                        // A network connection error occurred.
+                        return redirect('upload')->with('error', $e->getMessage());
+                    } catch(Exception $e) {
+                        // Something else went wrong, unrelated to the Tinify API.
+                        return redirect('upload')->with('error', $e->getMessage());
+                    }            
+                    */
+                    // Add image information to the array
+                    $imageData = ['name' => $imageName];
+                    $newImage = Image::create($imageData);
+
+                    //$artifacts  = [1, 2];
+
+                    $newImage->artifacts()->attach($artifact);            
+                }
             }
 
         }
