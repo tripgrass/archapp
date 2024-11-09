@@ -81,10 +81,10 @@ class ApiArtifactController extends Controller
         Log::error(print_r($images,true));
             foreach( $images as $image ){
                 if( 'web' == $source ){
-                    $imgdata = base64_decode($image->uri);
+                    $imgdata = base64_decode($image);
                     $f = finfo_open();
                     $mime_type = "." . explode("/", finfo_buffer($f, $imgdata, FILEINFO_MIME_TYPE))[1];
-                    $img = $image->uri;
+                    $img = $image;
                     $image_parts = explode(";base64,", $img);
                     $image_type_aux = explode("image/", $image_parts[0]);
                     $image_type = $image_type_aux[1];
