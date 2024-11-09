@@ -82,7 +82,7 @@ class ApiArtifactController extends Controller
             foreach( $images as $image ){
                 if( 'web' == $source ){ 
 
-                    $imageName = $image->originalName;
+                    $imageName = $image->getClientOriginalName();
                     $image->move(public_path('images'), $imageName);
                     $filepath = public_path('images/'.$imageName);
 
