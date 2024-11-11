@@ -14,7 +14,7 @@ Route::middleware('auth:api')->group( function () {
     Route::get('users', [UserController::class, 'userRecords']);
 //    Route::get('/artifacts', [ArtifactController::class, 'index']);
 });
-Route::group(['middleware' => ['client', 'auth:api']], function() {
+Route::group(['middleware' => ['client']], function() {
     Route::post('login', [UserController::class, 'login']);
 });
 Route::group(['middleware' => ['client', 'auth:api']], function() {
