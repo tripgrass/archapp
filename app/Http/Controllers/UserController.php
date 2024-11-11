@@ -44,6 +44,9 @@ class UserController extends Controller
      */
     public function login(Request $request)
     {
+        Log::error('in login print_r($requestall,true)');
+        Log::error(print_r($request->all(),true));
+
         $user = [
             'email' => $request->email,
             'password' => $request->password
