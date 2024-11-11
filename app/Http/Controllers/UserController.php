@@ -55,7 +55,7 @@ class UserController extends Controller
  
         if (auth()->attempt($user)) {
             $token = auth()->user()->createToken('bagisto')->accessToken;
-            return response()->json(['token' => $token], 200);
+            return response()->json(['token' => $token, 'user' => $user], 200);
         } else {
             return response()->json(['error' => 'UnAuthorised'], 401);
         }
