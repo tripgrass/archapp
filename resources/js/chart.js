@@ -1,6 +1,5 @@
 import * as d3 from "d3";
 //import * as data from './data.json';
-console.log('data', data);
 export default function chart(){
   // Specify the dimensions of the chart.
   const width = 1228;
