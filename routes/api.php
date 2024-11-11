@@ -15,6 +15,8 @@ Route::middleware('auth:api')->group( function () {
 //    Route::get('/artifacts', [ArtifactController::class, 'index']);
 });
 Route::middleware(['client'])->group(function () {
+            Log::error('in clinet middlewate');
+
     Route::get('/artifacts', [ApiArtifactController::class, 'index']);
     Route::get('/artifacts/{id}', [ApiArtifactController::class, 'show']);
 
