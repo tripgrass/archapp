@@ -51,6 +51,7 @@ class UserController extends Controller
             'email' => $request->email,
             'password' => $request->password
         ];
+        Log::error(print_r($user,true));
  
         if (auth()->attempt($user)) {
             $token = auth()->user()->createToken('bagisto')->accessToken;
