@@ -10,6 +10,8 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\View\View;
 use App\Models\User; // this
 use Illuminate\Http\JsonResponse; // this
+use Laravel\Passport\PersonalAccessTokenResult;
+
 
 class AuthenticatedSessionController extends Controller
 {
