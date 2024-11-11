@@ -14,11 +14,11 @@ return new class extends Migration
         Schema::create('elos', function (Blueprint $table) {
             $table->id();
 
-            $table->bigInteger('primary_artifact_id');
+            $table->unsignedBigInteger('primary_artifact_id');
             $table->foreign('primary_artifact_id')->references('id')
                 ->on('artifacts')->onDelete('cascade');
 
-            $table->bigInteger('secondary_artifact_id');
+            $table->unsignedBigInteger('secondary_artifact_id');
             $table->foreign('secondary_artifact_id')->references('id')
                 ->on('artifacts')->onDelete('cascade');
 

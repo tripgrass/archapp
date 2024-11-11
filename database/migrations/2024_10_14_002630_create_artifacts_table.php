@@ -13,7 +13,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('artifacts', function (Blueprint $table) {
-            $table->increments('id');
+            $table->id();
             $table->string('name');
             $table->geometry('location', subtype: 'point')->nullable();
             $table->string('address')->nullable();

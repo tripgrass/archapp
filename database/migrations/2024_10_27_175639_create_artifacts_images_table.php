@@ -13,13 +13,9 @@ return new class extends Migration
     {
         Schema::create('artifacts_images', function (Blueprint $table) {
                 $table->id();
-                $table->biginteger('artifacts_id');
-                $table->biginteger('images_id');
 
-                $table->foreign('artifacts_id')->references('id')
-                     ->on('artifacts')->onDelete('cascade');
-                $table->foreign('images_id')->references('id')
-                    ->on('images')->onDelete('cascade');
+               $table->foreignId('artifacts_id')->constrained();
+               $table->foreignId('images_id')->constrained();
 
                 $table->timestamps();
         });

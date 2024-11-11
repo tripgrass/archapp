@@ -8,6 +8,8 @@ use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\View\View;
+use App\Models\User; // this
+use Illuminate\Http\JsonResponse; // this
 
 class AuthenticatedSessionController extends Controller
 {
@@ -22,6 +24,31 @@ class AuthenticatedSessionController extends Controller
     /**
      * Handle an incoming authentication request.
      */
+    public function store(Request $request): JsonResponse // this
+    {
+        $validatedData = $request->validate([
+            'email' => ['required', 'string', 'email'],
+            'password' => ['required', 'string'],
+        ]);
+
+        $user = User::where('email', $request->email)->first();
+
+        if(!Auth::attempt($validatedData)) {
+            return response()->json([
+                'success' => false,
+                'message' => 'Login failed. Please check your credentials.'
+            ], 401);
+        }
+
+        $token = $user->createToken($user->name)->plainTextToken;
+        
+        return response()->json([
+            'success' => true,
+            'user' => $user,
+            'access_token' => $token
+        ], 200);
+    }    
+    /*
     public function store(LoginRequest $request): RedirectResponse
     {
         $request->authenticate();
@@ -30,7 +57,7 @@ class AuthenticatedSessionController extends Controller
 
         return redirect()->intended(route('dashboard', absolute: false));
     }
-
+    */
     /**
      * Destroy an authenticated session.
      */

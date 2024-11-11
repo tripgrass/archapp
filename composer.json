@@ -10,6 +10,7 @@
         "laravel/passport": "^12.0",
         "laravel/tinker": "^2.9",
         "matanyadaev/laravel-eloquent-spatial": "^4.3",
+        "spatie/laravel-permission": "^6.10",
         "tinify/tinify": "^1.6"
     },
     "require-dev": {
