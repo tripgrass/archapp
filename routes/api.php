@@ -5,7 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\Api\ApiArtifactController;
 
-Route::post('register', [UserController::class, 'register']);
+//Route::post('register', [UserController::class, 'register']);
  
     Route::get('/artifactstest', [ApiArtifactController::class, 'index']);
 
