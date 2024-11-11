@@ -19,21 +19,15 @@ Route::middleware(['client'])->group(function () {
             Log::error('in clinet ??middlewate');
 
     Route::get('/artifacts', [ApiArtifactController::class, 'index']);
+    Route::get('/artifacts/{id}', [ApiArtifactController::class, 'show']);
 
     Route::post('/artifacts', [ApiArtifactController::class, 'store']);
     Route::post('/artifacts/store', [ApiArtifactController::class, 'store']);
     Route::post('login', [UserController::class, 'login']);
 
 });
-Route::group(['middleware' => ['client','auth:sanctum']], function() {
-//Route::middleware(['auth:sanctum'])->group(function() {
-    Route::get('/artifacts/{id}', [ApiArtifactController::class, 'show']);
-    Route::get('/posts', [PostController::class, 'index'])->middleware('role:admin|viewer');
-    Route::post('/posts', [PostController::class, 'store'])->middleware('role:admin|author');
-    Route::put('/posts/{post}', [PostController::class, 'update'])->middleware('role:admin');
-    Route::delete('/posts/{post}', [PostController::class, 'destroy'])->middleware('role:admin');
-    Route::get('/posts/{post}', [PostController::class, 'show'])->middleware('role:admin|viewer');
-});
+
+
 //Route::get('/artifacts/{id}', 'ArtifactController@show');
 //Route::post('/artifacts', 'ArtifactController@store');
 //Route::delete('/artifacts/{id}', 'ArtifactController@delete');

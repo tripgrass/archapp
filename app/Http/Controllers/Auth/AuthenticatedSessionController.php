@@ -23,35 +23,7 @@ class AuthenticatedSessionController extends Controller
         return view('auth.login');
     }
 
-    /**
-     * Handle an incoming authentication request.
-     */
-    /*
-    public function store(Request $request): JsonResponse // this
-    {
-        $validatedData = $request->validate([
-            'email' => ['required', 'string', 'email'],
-            'password' => ['required', 'string'],
-        ]);
-
-        $user = User::where('email', $request->email)->first();
-
-        if(!Auth::attempt($validatedData)) {
-            return response()->json([
-                'success' => false,
-                'message' => 'Login failed. Please check your credentials.'
-            ], 401);
-        }
-
-        $token = $user->createToken($user->name)->plainTextToken;
-        
-        return response()->json([
-            'success' => true,
-            'user' => $user,
-            'access_token' => $token
-        ], 200);
-    }    
-    */
+   
     public function store(LoginRequest $request): RedirectResponse
     {
         $request->authenticate();
