@@ -54,8 +54,9 @@ class UserController extends Controller
         Log::error(print_r($user,true));
  
         if (auth()->attempt($user)) {
+            $userObject = auth()->user();
             $token = auth()->user()->createToken('bagisto')->accessToken;
-            return response()->json(['token' => $token, 'user' => $user], 200);
+            return response()->json(['token' => $token, 'user' => $userObject], 200);
         } else {
             return response()->json(['error' => 'UnAuthorised'], 401);
         }
