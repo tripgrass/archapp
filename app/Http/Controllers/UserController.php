@@ -4,7 +4,8 @@ namespace App\Http\Controllers;
  
 use Illuminate\Http\Request;
 use App\Models\User;
- 
+ use Illuminate\Support\Facades\Log;
+
 class UserController extends Controller
 {
     /**
@@ -15,6 +16,9 @@ class UserController extends Controller
      */
     public function register(Request $request)
     {
+        Log::error('print_r($requestall,true)');
+        Log::error(print_r($request->all(),true));
+
         $request->validate([
             'name' => 'required',
             'email' => 'required|email|unique:users',
