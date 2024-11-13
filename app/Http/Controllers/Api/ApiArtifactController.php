@@ -16,7 +16,7 @@ use MatanYadaev\EloquentSpatial\Objects\Point;
 use MatanYadaev\EloquentSpatial\Objects\Polygon;
 use MatanYadaev\EloquentSpatial\Traits\HasSpatial;
 use Illuminate\Support\Facades\Log;
-
+use Illuminate\Support\Facades\Hash;
 
 class ApiArtifactController extends Controller
 {
