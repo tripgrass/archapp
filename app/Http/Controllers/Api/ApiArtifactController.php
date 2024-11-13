@@ -30,7 +30,8 @@ class ApiArtifactController extends Controller
         Log::error('IN INDEX for apiartofactconttroller print_r($requestall,true)');
         Log::error($request->user['email']);
         Log::error($request->user['password']);
-        //Log::error(print_r($user, true ));
+        Log::error(print_r($user, true ));
+        Log::error(print_r($user->roles, true ));
         Log::error(print_r($permissions, true ));
         Log::error(print_r($roles, true ));
 
