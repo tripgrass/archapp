@@ -23,7 +23,8 @@ class ApiArtifactController extends Controller
     public function index(Request $request)
     {
         if( isset($request->user) ){
-            $user = User::whereEmail($request->user['email'])->wherePassword(Hash::make($request->user['password']))->first();
+
+            $user = User::whereEmail($request->user['email'])->first();
         Log::error('IN INDEX for apiartofactconttroller print_r($requestall,true)');
         Log::error($request->user['email']);
         Log::error($request->user['password']);
