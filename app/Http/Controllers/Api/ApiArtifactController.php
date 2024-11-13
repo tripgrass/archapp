@@ -58,8 +58,11 @@ class ApiArtifactController extends Controller
         return view('artifacts.create');
     }
 
-    public function show($id)
+    public function show($id, Request $request)
     {
+        Log::error($id);
+        Log::error('print_r($requestall,true)');
+        Log::error(print_r($request->all(),true));
         return new ArtifactResource(Artifact::findOrFail($id));
     }
 
