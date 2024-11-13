@@ -22,7 +22,7 @@ class ApiArtifactController extends Controller
     public function index(Request $request)
     {
         Log::error('IN INDEX for apiartofactconttroller print_r($requestall,true)');
-        Log::error(print_r($allRequest,true));
+        Log::error(print_r($request,true));
 
 
         return new ArtifactCollection(Artifact::all());
