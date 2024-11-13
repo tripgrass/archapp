@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api;
 use Illuminate\Http\Request;
 use App\Models\Artifact;
 use App\Models\Image;
+use App\Models\User;
 
 use App\Http\Resources\Artifact as ArtifactResource;
 use App\Http\Resources\ArtifactCollection;
@@ -21,10 +22,11 @@ class ApiArtifactController extends Controller
 {
     public function index(Request $request)
     {
+        if( isset($request->user) ){
+            $user = User::whereEmail($request->user->email)->wherePassword(Hash::make($request->user->password))->first();
         Log::error('IN INDEX for apiartofactconttroller print_r($requestall,true)');
-        Log::error(print_r($request->all(),true));
-
-
+        Log::error(print_r($request->all(), true ));
+        }
         return new ArtifactCollection(Artifact::all());
 
     }
