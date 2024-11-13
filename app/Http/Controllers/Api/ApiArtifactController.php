@@ -27,7 +27,6 @@ class ApiArtifactController extends Controller
         if( isset($request->user) ){
             $user = User::whereEmail($request->user['email'])->first();
             $role = Role::where('name','writer')->first();
-$user->assignRole($role);
             $permissions = $user->permissions;
             $roles = $user->getRoleNames();
         Log::error('IN INDEX for apiartofactconttroller print_r($requestall,true)');
