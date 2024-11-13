@@ -25,7 +25,7 @@ class ApiArtifactController extends Controller
         if( isset($request->user) ){
             $user = User::whereEmail($request->user['email'])->wherePassword(Hash::make($request->user['password']))->first();
         Log::error('IN INDEX for apiartofactconttroller print_r($requestall,true)');
-        Log::error(print_r($request->all(), true ));
+        Log::error(print_r($user, true ));
         }
         return new ArtifactCollection(Artifact::all());
 
