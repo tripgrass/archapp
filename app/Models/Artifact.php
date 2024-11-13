@@ -9,7 +9,8 @@ use MatanYadaev\EloquentSpatial\Objects\Point;
 use MatanYadaev\EloquentSpatial\Objects\Polygon;
 use MatanYadaev\EloquentSpatial\Traits\HasSpatial;
 Use App\Models\Image;
-;
+Use App\Models\User;
+
 /**
  * @property Point $location
  * @property Polygon $area
@@ -38,5 +39,10 @@ class Artifact extends Model
     public function images()
     {
         return $this->belongsToMany(Image::class, 'artifacts_images', 'artifacts_id','images_id');
-    } 
+    }
+
+    public function users()
+    {
+        return $this->belongsToMany(User::class, 'artifacts_users', 'artifacts_id','users_id');
+    }     
 }

@@ -38,7 +38,13 @@ class ApiArtifactController extends Controller
         Log::error(print_r($roles, true ));
 
         }
-        return new ArtifactCollection(Artifact::all());
+        if( $request->where ){
+
+        }
+        else{
+            $artifacts = Artifact::all();
+        }
+        return new ArtifactCollection( $artifacts );
 
     }
 
