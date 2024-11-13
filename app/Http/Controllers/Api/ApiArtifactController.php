@@ -62,6 +62,7 @@ class ApiArtifactController extends Controller
     {
         Log::error($id);
         Log::error('print_r($requestall,true)');
+        Log::error($id);
         Log::error(print_r($request->all(),true));
         return new ArtifactResource(Artifact::findOrFail($id));
     }
