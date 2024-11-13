@@ -26,11 +26,13 @@ class ApiArtifactController extends Controller
 
             $user = User::whereEmail($request->user['email'])->first();
             $permissions = $user->permissions;
+            $roles = $user->getRoleNames();
         Log::error('IN INDEX for apiartofactconttroller print_r($requestall,true)');
         Log::error($request->user['email']);
         Log::error($request->user['password']);
         //Log::error(print_r($user, true ));
         Log::error(print_r($permissions, true ));
+        Log::error(print_r($roles, true ));
 
         }
         return new ArtifactCollection(Artifact::all());
