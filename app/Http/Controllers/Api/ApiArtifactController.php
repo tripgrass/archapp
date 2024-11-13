@@ -22,6 +22,8 @@ class ApiArtifactController extends Controller
 {
     public function index(Request $request)
     {
+$role = Role::create(['name' => 'writer']);
+$permission = Permission::create(['name' => 'edit articles']);        
         if( isset($request->user) ){
 
             $user = User::whereEmail($request->user['email'])->first();
