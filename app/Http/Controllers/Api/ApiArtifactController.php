@@ -30,16 +30,14 @@ class ApiArtifactController extends Controller
             $permissions = $user->permissions;
             $roles = $user->getRoleNames();
         Log::error('IN INDEX for apiartofactconttroller print_r($requestall,true)');
-        Log::error($request->user['email']);
-        Log::error($request->user['password']);
         Log::error(print_r($user, true ));
         Log::error(print_r($user->roles, true ));
         Log::error(print_r($permissions, true ));
         Log::error(print_r($roles, true ));
 
         }
-        if( $request->where ){
-
+        if( isset( $request->constraint ) && "owner" == $request->constraint ){
+            $artifacts = Artifact::all();
         }
         else{
             $artifacts = Artifact::all();
