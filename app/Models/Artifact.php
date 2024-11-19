@@ -10,6 +10,7 @@ use MatanYadaev\EloquentSpatial\Objects\Polygon;
 use MatanYadaev\EloquentSpatial\Traits\HasSpatial;
 Use App\Models\Image;
 Use App\Models\User;
+Use App\Models\Person;
 
 /**
  * @property Point $location
@@ -28,7 +29,8 @@ class Artifact extends Model
         'state',
         'zipcode',
         'eloGroup',
-        'scale'
+        'scale',
+        'primary_image_id'
     ];
 
     protected $casts = [
@@ -41,8 +43,15 @@ class Artifact extends Model
         return $this->belongsToMany(Image::class, 'artifacts_images', 'artifacts_id','images_id');
     }
 
+    // a user is an editor - not necessarily involved in the artifact itself 
     public function users()
     {
         return $this->belongsToMany(User::class, 'artifacts_users', 'artifacts_id','users_id');
     }     
+
+    // a person is an architect etc
+    public function persons()
+    {
+        return $this->belongsToMany(Person::class, 'artifacts_persons', 'artifacts_id','persons_id');
+    }    
 }

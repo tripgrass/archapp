@@ -4,7 +4,9 @@ namespace App\Models;
   
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 Use App\Models\Artifact;
+Use App\Models\Person;
 
   
 class Image extends Model
@@ -13,6 +15,10 @@ class Image extends Model
   
     protected $fillable = [
         'name',
+        'title',
+        'year',
+        'alttext',
+
     ];
 
     protected $attributes = [
@@ -21,5 +27,13 @@ class Image extends Model
     public function artifacts()
     {
         return $this->belongsToMany(Artifact::class, 'artifacts_images', 'images_id', 'artifacts_id');
-    }    
+    } 
+
+    /**
+     * Get the person that owns the image.
+     */
+    public function person(): BelongsTo
+    {
+        return $this->belongsTo(Person::class);
+    }       
 }

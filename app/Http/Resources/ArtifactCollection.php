@@ -4,6 +4,7 @@ namespace App\Http\Resources;
 
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\ResourceCollection;
+use App\Models\Image;
 
 class ArtifactCollection extends ResourceCollection
 {
@@ -14,13 +15,20 @@ class ArtifactCollection extends ResourceCollection
      */
     public function toArray($request)
     {
-        return $this->collection->map(function ($article) {
+        return $this->collection->map(function ($artifact) {
+
+            $primaryImage = null;
+            if( $artifact->primary_image_id ){
+                $primaryImage = Image::findOrFail($artifact->primary_image_id);
+            }
+
             return [
-                'id' => $article->id,
-                'name' => $article->name,
-                'latitude' => $article->location ? $article->location->latitude : null,
-                'longitude' => $article->location ? $article->location->longitude : null,
-                'images' => $article->images
+                'id' => $artifact->id,
+                'name' => $artifact->name,
+                'latitude' => $artifact->location ? $artifact->location->latitude : null,
+                'longitude' => $artifact->location ? $artifact->location->longitude : null,
+                'images' => $artifact->images,
+                'primaryImage' => $primaryImage
             ];
         });
     }

@@ -10,6 +10,7 @@ use Illuminate\Notifications\Notifiable;
 use Laravel\Passport\HasApiTokens;
 use Laravel\Passport\PersonalAccessTokenResult;
 Use App\Models\Artifact;
+Use App\Models\Person;
 
 class User extends Authenticatable
 {
@@ -25,6 +26,7 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'person_id'
     ];
 
     /**
@@ -53,5 +55,10 @@ class User extends Authenticatable
     public function artifacts()
     {
         return $this->belongsToMany(Artifact::class, 'artifacts_images', 'users_id', 'artifacts_id');
-    }    
+    }   
+
+    public function profile()
+    {
+        return Person::findOrFail($this->profile_person_id);
+    }     
 }
