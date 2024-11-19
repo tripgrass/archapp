@@ -4,10 +4,12 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\Api\ApiArtifactController;
+use App\Http\Controllers\Api\ApiPersonController;
 
 //Route::post('register', [UserController::class, 'register']);
  
     Route::post('register', [UserController::class, 'register']);
+    Route::get('/persons', [ApiPersonController::class, 'index']);
 
 Route::middleware('auth:api')->group( function () {
     Route::get('user', [UserController::class, 'userRecord']);
