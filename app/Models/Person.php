@@ -10,8 +10,10 @@ Use App\Models\Image;
   
 class Person extends Model
 {
+
     use HasFactory;
-  
+    protected $table = 'persons';
+
     protected $fillable = [
         'firstName',
         'lastName',
