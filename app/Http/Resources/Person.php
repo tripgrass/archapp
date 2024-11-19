@@ -19,6 +19,7 @@ class Person extends JsonResource
             'id'         => $this->id,
             'firstname'       => $this->firstname,
             'lastname'       => $this->firstname,
+            'personas'       => $this->personas
         ];        
     }
 }

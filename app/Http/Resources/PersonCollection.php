@@ -18,7 +18,8 @@ class PersonCollection extends ResourceCollection
             return [
                 'id' => $person->id,
                 'firstname' => $person->firstname,
-                'lastname' => $person->lastname
+                'lastname' => $person->lastname,
+                'personas' => $person->personas
             ];
         });
     }
