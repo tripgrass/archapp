@@ -16,10 +16,10 @@ class Person extends JsonResource
     {
         //return parent::toArray($request);
         return [
-            'id'         => $this->id,
-            'firstname'       => $this->firstname,
-            'lastname'       => $this->firstname,
-            'personas'       => $this->personas
+            'id'            => $this->id,
+            'firstname'     => $this->firstname,
+            'lastname'      => $this->firstname,
+            'personas'      => $this->personas
         ];        
     }
 }

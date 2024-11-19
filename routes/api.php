@@ -10,6 +10,7 @@ use App\Http\Controllers\Api\ApiPersonController;
  
     Route::post('register', [UserController::class, 'register']);
     Route::get('/persons', [ApiPersonController::class, 'index']);
+    Route::get('/artifacts', [ApiArtifactController::class, 'index']);
 
 Route::middleware('auth:api')->group( function () {
     Route::get('user', [UserController::class, 'userRecord']);
@@ -24,7 +25,7 @@ Route::group(['middleware' => ['client', 'auth:api']], function() {
     Route::get('/artifactstest', [ApiArtifactController::class, 'index']);
             Log::error('in clinet ??middlewate');
 
-    Route::get('/artifacts', [ApiArtifactController::class, 'index']);
+//    Route::get('/artifacts', [ApiArtifactController::class, 'index']);
     Route::get('/artifacts/{id}', [ApiArtifactController::class, 'show']);
 
     Route::post('/artifacts', [ApiArtifactController::class, 'store']);
