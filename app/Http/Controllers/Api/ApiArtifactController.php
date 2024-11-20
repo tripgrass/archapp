@@ -87,6 +87,8 @@ class ApiArtifactController extends Controller
                 unset( $allRequest['source'] );
             }
         }
+        unset( $allRequest['user_name'] );
+        unset( $allRequest['user_email'] );
 
 
         /* END IMAGE */
