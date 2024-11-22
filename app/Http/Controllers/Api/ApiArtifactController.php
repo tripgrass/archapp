@@ -169,7 +169,7 @@ class ApiArtifactController extends Controller
 
     public function delete(Request $request)
     {
-if( isset($request->user) ){
+        if( isset($request->user) ){
             $user = User::whereEmail($request->user['email'])->first();
             $role = Role::where('name','writer')->first();
             $permissions = $user->permissions;
@@ -185,9 +185,19 @@ if( isset($request->user) ){
             $artifacts = Artifact::all();
         }
         else{
-            $artifacts = Artifact::all();
+            $artifact = Artifact::findOrFail($request->id);
+            $artifact->images()->detach();
+            $artifact->persons()->detach();
+            $artifact->users()->detach();
+            $artifact->delete();
+
+        $artifact2 = Artifact::findOrFail(8);
+
+        $resource = new ArtifactResource($artifact2);
+                Log::error(print_r($resource,true));            
+            //$artifacts = Artifact::all();
+        return $resource;        
         }
-        return new ArtifactCollection( $artifacts );        
         /*
         $artifact = Artifact::findOrFail($id);
         $artifact->images()->detach();
