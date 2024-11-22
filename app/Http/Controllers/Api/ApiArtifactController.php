@@ -19,6 +19,7 @@ use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Hash;
 use Spatie\Permission\Models\Role;
 use Spatie\Permission\Models\Permission;
+use Symfony\Component\HttpFoundation\Response;
 
 class ApiArtifactController extends Controller
 {
@@ -190,7 +191,7 @@ class ApiArtifactController extends Controller
             $artifact->delete();
         Log::error('after delete');
         }
-        return response()->json(['message' => 'Post soft deleted']);
+        return response()->json(['post' => "deleted"], Response::HTTP_CREATED);
         //Log::error('after response', $responseT);
         //return $responseT;
 //        $artifacts = Artifact::all();
