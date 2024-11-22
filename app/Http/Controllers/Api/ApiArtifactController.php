@@ -191,8 +191,9 @@ class ApiArtifactController extends Controller
         Log::error('after delete');
         }
         $artifacts = Artifact::all();
-        return new ArtifactCollection( $artifacts );
-        
+        $returnV = new ArtifactCollection( $artifacts );
+        Log::error(print_r($returnV, true ));
+        return $returnV;
         /*
         $artifact = Artifact::findOrFail($id);
         $artifact->images()->detach();
