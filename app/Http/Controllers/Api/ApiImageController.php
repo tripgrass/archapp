@@ -89,6 +89,7 @@ class ApiImageController extends Controller
             return response()->json(null, 204);
         }
         else{
+            
             return response()->json(null, 500);
         }
     }
