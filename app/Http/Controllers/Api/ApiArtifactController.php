@@ -176,43 +176,13 @@ class ApiArtifactController extends Controller
             $permissions = $user->permissions;
             $roles = $user->getRoleNames();
         Log::error('IN INDEX for apiartofactconttroller print_r($requestall,true)');
-        Log::error(print_r($request->all(), true ));
-
+//        Log::error(print_r($request->all(), true ));
         }
-        if( isset( $request->constraint ) && "owner" == $request->constraint ){
-            $artifacts = Artifact::all();
-        }
-        else{
-        Log::error('about to delete');
-            $artifact = Artifact::findOrFail($request->id);
-            $artifact->images()->detach();
-            $artifact->persons()->detach();
-            $artifact->users()->detach();
-            $artifact->delete();
-        Log::error('after delete');
-        }
-         return response()->json(['message' => 'Post soft deleted']);
-//        return response()->setStatusCode(201);
-
-        //return response()->json(['post' => "deleted"], Response::HTTP_CREATED);
-        //Log::error('after response', $responseT);
-        //return $responseT;
-//        $artifacts = Artifact::all();
-  //      $returnV = new ArtifactCollection( $artifacts );
-    //    return $returnV;
-        /*
-        $artifact = Artifact::findOrFail($id);
+        $artifact = Artifact::findOrFail($request->id);
         $artifact->images()->detach();
         $artifact->persons()->detach();
         $artifact->users()->detach();
         $artifact->delete();
-        $artifact2 = Artifact::findOrFail(8);
-
-        $resource = new ArtifactResource($artifact2);
-                Log::error(print_r($resource,true));
-
-//return $resource;
-         return response()->json(['message' => 'Post soft deleted', 'reosurce'=>$resource]);
-         */
+        return response()->json(['message' => 'Post soft deleted']);
     }
 }
