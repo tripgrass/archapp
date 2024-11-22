@@ -174,7 +174,9 @@ class ApiArtifactController extends Controller
         $artifact->persons()->detach();
         $artifact->users()->detach();
         $artifact->delete();
+        $artifact2 = Artifact::findOrFail(8);
+        return new ArtifactResource($artifact2);
 
-         return response()->json(['message' => 'Post soft deleted']);
+//         return response()->json(['message' => 'Post soft deleted']);
     }
 }
