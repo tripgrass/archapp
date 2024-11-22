@@ -189,8 +189,10 @@ class ApiArtifactController extends Controller
             $artifact->users()->detach();
             $artifact->delete();
         Log::error('after delete');
-return response()->json(['message' => 'Post soft deleted']);
         }
+        $artifacts = Artifact::all();
+        return new ArtifactCollection( $artifacts );
+        
         /*
         $artifact = Artifact::findOrFail($id);
         $artifact->images()->detach();
