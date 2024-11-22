@@ -190,10 +190,12 @@ class ApiArtifactController extends Controller
             $artifact->delete();
         Log::error('after delete');
         }
-        $artifacts = Artifact::all();
-        $returnV = new ArtifactCollection( $artifacts );
-        Log::error(print_r($returnV, true ));
-        return $returnV;
+        $responseT = response()->json(['message' => 'Post soft deleted']);
+        Log::error('after response', $responseT);
+        return $responseT;
+//        $artifacts = Artifact::all();
+  //      $returnV = new ArtifactCollection( $artifacts );
+    //    return $returnV;
         /*
         $artifact = Artifact::findOrFail($id);
         $artifact->images()->detach();
