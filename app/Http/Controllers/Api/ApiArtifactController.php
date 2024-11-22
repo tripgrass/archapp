@@ -182,7 +182,11 @@ class ApiArtifactController extends Controller
         $artifact->images()->detach();
         $artifact->persons()->detach();
         $artifact->users()->detach();
-        $artifact->delete();
+        $deleteResult = $artifact->delete();
+        Log::error('print_r($deleteresult,true)');
+        Log::error(print_r($deleteResult,true));
+        Log::error($deleteResult);
+
         return response()->json(['message' => 'Post soft deleted']);
     }
 }
