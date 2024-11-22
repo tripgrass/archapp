@@ -170,6 +170,9 @@ class ApiArtifactController extends Controller
     public function delete($id)
     {
         $artifact = Artifact::findOrFail($id);
+        $artifact->images()->detach();
+        $artifact->persons()->detach();
+        $artifact->users()->detach();
         $artifact->delete();
 
         return response()->json(null, 204);
