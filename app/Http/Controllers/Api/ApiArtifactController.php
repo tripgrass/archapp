@@ -175,21 +175,20 @@ class ApiArtifactController extends Controller
             $permissions = $user->permissions;
             $roles = $user->getRoleNames();
         Log::error('IN INDEX for apiartofactconttroller print_r($requestall,true)');
-        Log::error(print_r($user, true ));
-        Log::error(print_r($user->roles, true ));
-        Log::error(print_r($permissions, true ));
-        Log::error(print_r($roles, true ));
+        Log::error(print_r($request->all(), true ));
 
         }
         if( isset( $request->constraint ) && "owner" == $request->constraint ){
             $artifacts = Artifact::all();
         }
         else{
+        Log::error('about to delete');
             $artifact = Artifact::findOrFail($request->id);
             $artifact->images()->detach();
             $artifact->persons()->detach();
             $artifact->users()->detach();
             $artifact->delete();
+        Log::error('after delete');
 return response()->json(['message' => 'Post soft deleted']);
         }
         /*
