@@ -184,12 +184,12 @@ class ApiArtifactController extends Controller
         $artifact->users()->detach();
         $deleteResult = $artifact->delete();
         if( $deleteResult > 0 ){
-            $message = "Artifact was soft deleted",
-            $statusCode = 200
+            $message = "Artifact was soft deleted";
+            $statusCode = 200;
         }
         else{
-            $message = "Artifact was not found",
-            $statusCode = 400            
+            $message = "Artifact was not found";
+            $statusCode = 400;
         }
         return response()->json(['message' => $message, "deleteResult" => $deleteResult])->setStatusCode($statusCode);
     }
