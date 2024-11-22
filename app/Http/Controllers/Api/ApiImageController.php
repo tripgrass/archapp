@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api;
 use Illuminate\Http\Request;
 use App\Models\Person;
 use App\Models\Persona;
+use App\Models\Artifact;
 use App\Models\Image;
 use App\Models\User;
 
