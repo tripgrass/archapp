@@ -77,7 +77,7 @@ class ApiImageController extends Controller
                 ->setStatusCode(201);
     }
 
-    public function delete($id)
+    public function delete(Request $request)
     {
         Log::error('image dlete print_r($requestall,true)');
         Log::error(print_r($request->all(),true));
