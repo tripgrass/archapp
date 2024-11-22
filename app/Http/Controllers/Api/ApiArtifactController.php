@@ -167,8 +167,28 @@ class ApiArtifactController extends Controller
                 ->setStatusCode(201);
     }
 
-    public function delete($id)
+    public function delete(Request $request)
     {
+if( isset($request->user) ){
+            $user = User::whereEmail($request->user['email'])->first();
+            $role = Role::where('name','writer')->first();
+            $permissions = $user->permissions;
+            $roles = $user->getRoleNames();
+        Log::error('IN INDEX for apiartofactconttroller print_r($requestall,true)');
+        Log::error(print_r($user, true ));
+        Log::error(print_r($user->roles, true ));
+        Log::error(print_r($permissions, true ));
+        Log::error(print_r($roles, true ));
+
+        }
+        if( isset( $request->constraint ) && "owner" == $request->constraint ){
+            $artifacts = Artifact::all();
+        }
+        else{
+            $artifacts = Artifact::all();
+        }
+        return new ArtifactCollection( $artifacts );        
+        /*
         $artifact = Artifact::findOrFail($id);
         $artifact->images()->detach();
         $artifact->persons()->detach();
@@ -181,5 +201,6 @@ class ApiArtifactController extends Controller
 
 //return $resource;
          return response()->json(['message' => 'Post soft deleted', 'reosurce'=>$resource]);
+         */
     }
 }
