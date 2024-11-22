@@ -188,13 +188,13 @@ class ApiArtifactController extends Controller
             $artifact->images()->detach();
             $artifact->persons()->detach();
             $artifact->users()->detach();
-           // $artifact->delete();
+            $artifact->delete();
         Log::error('after delete');
         }
         return (new ArtifactResource($artifact))
                 ->response()
                 ->setStatusCode(201);
-        
+
         //return response()->json(['post' => "deleted"], Response::HTTP_CREATED);
         //Log::error('after response', $responseT);
         //return $responseT;
