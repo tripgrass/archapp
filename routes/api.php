@@ -16,6 +16,7 @@ use App\Http\Controllers\Api\ApiUserController;
     Route::delete('/images/{id}/delete', [ApiImageController::class, 'delete']);
     Route::get('/images', [ApiImageController::class, 'index']);
     Route::get('/apiusers', [ApiUserController::class, 'index']);
+    Route::delete('/artifacts/{id}/delete', [ApiArtifactController::class, 'delete']);
 
 Route::middleware('auth:api')->group( function () {
     Route::get('user', [UserController::class, 'userRecord']);
@@ -32,7 +33,7 @@ Route::group(['middleware' => ['client', 'auth:api']], function() {
 
 //    Route::get('/artifacts', [ApiArtifactController::class, 'index']);
     Route::get('/artifacts/{id}', [ApiArtifactController::class, 'show']);
-    Route::delete('/artifacts/{id}/delete', [ApiArtifactController::class, 'delete']);
+    //Route::delete('/artifacts/{id}/delete', [ApiArtifactController::class, 'delete']);
 
     Route::post('/artifacts', [ApiArtifactController::class, 'store']);
     Route::post('/artifacts/store', [ApiArtifactController::class, 'store']);
