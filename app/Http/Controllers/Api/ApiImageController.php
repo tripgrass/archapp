@@ -80,7 +80,7 @@ class ApiImageController extends Controller
     public function delete($id)
     {
         Log::error('image dlete print_r($requestall,true)');
-        Log::error(print_r($allRequest,true));
+        Log::error(print_r($request->all(),true));
 
 //        $image = Image::findOrFail($id);
   //      $image->delete();
