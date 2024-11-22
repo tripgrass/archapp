@@ -191,9 +191,7 @@ class ApiArtifactController extends Controller
             $artifact->delete();
         Log::error('after delete');
         }
-        return (new ArtifactResource($artifact))
-                ->response()
-                ->setStatusCode(201);
+        return response()->setStatusCode(201);
 
         //return response()->json(['post' => "deleted"], Response::HTTP_CREATED);
         //Log::error('after response', $responseT);
