@@ -8,6 +8,7 @@ use MatanYadaev\EloquentSpatial\SpatialBuilder;
 use MatanYadaev\EloquentSpatial\Objects\Point;
 use MatanYadaev\EloquentSpatial\Objects\Polygon;
 use MatanYadaev\EloquentSpatial\Traits\HasSpatial;
+use Illuminate\Database\Eloquent\SoftDeletes;
 Use App\Models\Image;
 Use App\Models\User;
 Use App\Models\Person;
@@ -19,6 +20,7 @@ Use App\Models\Person;
 class Artifact extends Model
 {
     use HasFactory, HasSpatial;
+    use SoftDeletes;
 
     protected $fillable = [
         'name',
@@ -36,8 +38,8 @@ class Artifact extends Model
     protected $casts = [
         'location' => Point::class,
         'area' => Polygon::class,
+        'deleted_at' => 'datetime'
     ];
-
     public function images()
     {
         return $this->belongsToMany(Image::class, 'artifacts_images', 'artifacts_id','images_id');
