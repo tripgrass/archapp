@@ -164,7 +164,6 @@ class ApiArtifactController extends Controller
         }
 
         return (new ArtifactResource($artifact))
-                ->response()
                 ->setStatusCode(201);
     }
 

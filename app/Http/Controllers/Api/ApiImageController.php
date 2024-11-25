@@ -82,6 +82,7 @@ class ApiImageController extends Controller
     {
         Log::error('image dlete print_r($requestall,true)');
         if( $request->artifact_id && $request->image_id ){
+        Log::error('($request)', $request->all());
             $artifact = Artifact::findOrFail($request->artifact_id);
             $artifact->images()->detach($request->image_id);
             return response()->json(null, 204);
