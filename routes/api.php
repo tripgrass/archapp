@@ -33,7 +33,7 @@ Route::group(['middleware' => ['client', 'auth:api']], function() {
             Log::error('in clinet ??middlewate');
 
 //    Route::get('/artifacts', [ApiArtifactController::class, 'index']);
-    Route::get('/artifacts/{id}', [ApiArtifactController::class, 'show']);
+    //Route::get('/artifacts/{id}', [ApiArtifactController::class, 'show']);
     //Route::delete('/artifacts/{id}/delete', [ApiArtifactController::class, 'delete']);
 
     Route::post('/artifacts', [ApiArtifactController::class, 'store']);
