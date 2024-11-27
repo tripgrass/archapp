@@ -162,13 +162,15 @@ class ApiArtifactController extends Controller
             }
 
         }
+
         $artifactResource = new ArtifactResource($artifact);
         /*
         return (new ArtifactResource($artifact))
                 ->response()
                 ->setStatusCode(201);
                 */
-        return response()->json(["artifact" => $artifactResource])->setStatusCode(201);                
+                return $artifactResource;
+//        return response()->json(["artifact" => $artifactResource])->setStatusCode(201);                
     }
 
     public function delete(Request $request)
