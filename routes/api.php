@@ -36,6 +36,7 @@ Route::group(['middleware' => ['client', 'auth:api']], function() {
     //Route::get('/artifacts/{id}', [ApiArtifactController::class, 'show']);
     //Route::delete('/artifacts/{id}/delete', [ApiArtifactController::class, 'delete']);
 
+    Route::post('/images/store', [ApiImageController::class, 'store']);
     Route::post('/artifacts', [ApiArtifactController::class, 'store']);
     Route::post('/artifacts/store', [ApiArtifactController::class, 'store']);
 
