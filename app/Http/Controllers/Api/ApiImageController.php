@@ -73,9 +73,7 @@ class ApiImageController extends Controller
         else{
             $image = Image::create($allRequest);
         }
-        return (new ImageResource($person))
-                ->response()
-                ->setStatusCode(201);
+        return new ImageResource($image);
     }
 
     public function delete(Request $request)
