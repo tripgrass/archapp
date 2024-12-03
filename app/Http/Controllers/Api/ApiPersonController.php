@@ -26,8 +26,11 @@ class ApiPersonController extends Controller
         Log::error('in PERSONS print_r($requestall,true)');
         Log::error(print_r($request->all(),true));
 
-        if( isset( $request->constraint ) && "owner" == $request->constraint ){
-            $persons = Person::all();
+        if( isset( $request->personas ) ){
+         //   $persons = Person::all();
+$persons = Person::with(['personas' => function ($query) use ($request) {
+    $query->where('title', 'Photographer')
+}])->get();            
         }
         else{
             $persons = Person::all();
