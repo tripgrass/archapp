@@ -19,6 +19,6 @@ class Persona extends Model
 
     public function persons()
     {
-        return $this->belongsToMany(Person::class, 'persons_personas', 'persons_id', 'persons_id');
+        return $this->belongsToMany(Person::class, 'personas_persons', 'persons_id', 'persons_id');
     }
 }
