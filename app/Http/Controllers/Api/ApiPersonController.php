@@ -23,6 +23,9 @@ class ApiPersonController extends Controller
 {
     public function index(Request $request)
     {
+        Log::error('print_r($requestall,true)');
+        Log::error(print_r($request->all(),true));
+
         if( isset( $request->constraint ) && "owner" == $request->constraint ){
             $persons = Person::all();
         }
