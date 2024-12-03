@@ -30,11 +30,11 @@ class ApiArtifactController extends Controller
             $role = Role::where('name','writer')->first();
             $permissions = $user->permissions;
             $roles = $user->getRoleNames();
-        Log::error('IN INDEX for apiartofactconttroller print_r($requestall,true)');
-        Log::error(print_r($user, true ));
-        Log::error(print_r($user->roles, true ));
-        Log::error(print_r($permissions, true ));
-        Log::error(print_r($roles, true ));
+       // Log::error('IN INDEX for apiartofactconttroller print_r($requestall,true)');
+        //Log::error(print_r($user, true ));
+        //Log::error(print_r($user->roles, true ));
+        //Log::error(print_r($permissions, true ));
+        //Log::error(print_r($roles, true ));
 
         }
         if( isset( $request->constraint ) && "owner" == $request->constraint ){
@@ -59,10 +59,10 @@ class ApiArtifactController extends Controller
 
     public function show($id, Request $request)
     {
-        Log::error($id);
-        Log::error('print_r($requestall,true)');
-        Log::error($id);
-        Log::error(print_r($request->all(),true));
+       // Log::error($id);
+        //Log::error('print_r($requestall,true)');
+        //Log::error($id);
+        //Log::error(print_r($request->all(),true));
         return new ArtifactResource(Artifact::findOrFail($id));
     }
 
@@ -70,8 +70,8 @@ class ApiArtifactController extends Controller
     {
 
         $allRequest = $request->all();
-        Log::error('print_r($requestall,true)');
-        Log::error(print_r($allRequest,true));
+       // Log::error('print_r($requestall,true)');
+        //Log::error(print_r($allRequest,true));
 
         if( isset($allRequest['latitude']) &&  isset($allRequest['longitude']) ){
             $allRequest['location'] = new Point($allRequest['latitude'], $allRequest['longitude']);
