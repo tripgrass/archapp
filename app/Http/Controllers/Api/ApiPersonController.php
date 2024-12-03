@@ -27,7 +27,7 @@ class ApiPersonController extends Controller
         Log::error(print_r($request->all(),true));
 
         if( isset( $request->personas ) ){
-            $persons = Persona::find(1)->persons;
+            $persons = Persona::where('title','Photographer')->first()->persons;
         }
         else{
             $persons = Person::all();
