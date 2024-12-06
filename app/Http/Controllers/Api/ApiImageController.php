@@ -61,12 +61,23 @@ class ApiImageController extends Controller
         $allRequest = $request->all();
         Log::error('print_r($requestall,true)');
         Log::error(print_r($allRequest,true));
+        $modelProps = [
+            "title",
+            "alttext",
+            "year",
+            "person_id"
+        ];
 
         /* END IMAGE */
         if( isset($allRequest['id']) && $allRequest['id'] ){
             $image = Image::find( $allRequest['id'] );
             foreach( $allRequest as $key => $val){
-                $image[$key] = $val;
+                if( in_array($key, $modelProps) ){
+                    $image[$key] = $val;
+                }
+                if( "isPrimary" == $key && $val ){
+
+                }
             } 
             $image->save();
         }
