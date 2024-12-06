@@ -75,14 +75,17 @@ class ApiImageController extends Controller
                 if( in_array($key, $modelProps) ){
                     $image[$key] = $val;
                 }
-                if( "isPrimary" == $key && $val ){
-
-                }
             } 
             $image->save();
         }
         else{
             $image = Image::create($allRequest);
+        }
+        if( isset( $request->isPrimary ) && $request->isPrimary ){
+            Log::error('has artifact');
+            $artifact = Artifact::findOrFail($request->artifact_id);
+            $artifact->primary_image_id = $image->id;
+            $artifact->save();
         }
         return new ImageResource($image);
     }
