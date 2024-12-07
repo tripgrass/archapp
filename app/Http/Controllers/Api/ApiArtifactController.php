@@ -161,8 +161,10 @@ class ApiArtifactController extends Controller
 
                     $newImage->artifacts()->attach($artifact);            
                 }
-                if( $newImage ){
-
+                if( $newImage && $imagesMeta && isset($imagesMeta[$i]) ){
+                    $newImage->year = $imagesMeta[$i]->year;
+                    $newImage->person_id = $imagesMeta[$i]->person_id;
+                    $newImage->save();
                 }
             }
 
