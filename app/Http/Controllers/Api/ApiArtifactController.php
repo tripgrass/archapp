@@ -108,7 +108,7 @@ class ApiArtifactController extends Controller
         if(isset($images)){
         Log::error('print_r($imagesMeta,true)');
         Log::error(print_r($imagesMeta,true));
-            foreach( $images as $i = > $image ){
+            foreach( $images as $i => $image ){
                 if( 'web' == $source ){ 
 
                     $imageName = $image->getClientOriginalName();
