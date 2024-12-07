@@ -70,8 +70,8 @@ class ApiArtifactController extends Controller
     {
 
         $allRequest = $request->all();
-       // Log::error('print_r($requestall,true)');
-        //Log::error(print_r($allRequest,true));
+        Log::error('print_r($requestall,true)');
+        Log::error(print_r($allRequest,true));
 
         if( isset($allRequest['latitude']) &&  isset($allRequest['longitude']) ){
             $allRequest['location'] = new Point($allRequest['latitude'], $allRequest['longitude']);
@@ -110,8 +110,6 @@ class ApiArtifactController extends Controller
 
         /* IMAGE */
         if(isset($images)){
-        Log::error('print_r($imagesMeta,true)');
-        Log::error(print_r($imagesMeta,true));
             foreach( $images as $i => $image ){
                 if( 'web' == $source ){ 
 
