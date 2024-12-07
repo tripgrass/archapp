@@ -83,7 +83,7 @@ class ApiArtifactController extends Controller
         if( isset($allRequest['images']) && $allRequest['images']){
             $images = $allRequest['images'];
             unset( $allRequest['images'] );
-            if( array_key_exists('imagesMeta', $allRequest ) ){
+            if( isset($allRequest['imagesMeta']) && $allRequest['imagesMeta']){
                 $imagesMeta = $allRequest['imagesMeta'];
                 unset( $allRequest['imagesMeta'] );
             }
