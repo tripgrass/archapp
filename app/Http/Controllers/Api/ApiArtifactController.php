@@ -159,6 +159,9 @@ class ApiArtifactController extends Controller
 
                     $newImage->artifacts()->attach($artifact);            
                 }
+                if( $newImage ){
+                    
+                }
             }
 
         }

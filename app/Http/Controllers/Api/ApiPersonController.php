@@ -23,8 +23,8 @@ class ApiPersonController extends Controller
 {
     public function index(Request $request)
     {
-        Log::error('in PERSONS print_r($requestall,true)');
-        Log::error(print_r($request->all(),true));
+//        Log::error('in PERSONS print_r($requestall,true)');
+  //      Log::error(print_r($request->all(),true));
 
         if( isset( $request->personas ) ){
             $persona = Persona::where('title','Photographer')->first();
@@ -33,8 +33,8 @@ class ApiPersonController extends Controller
         else{
             $persons = Person::all();
         }
-        Log::error(print_r($persona,true));
-        Log::error(print_r($persons,true));
+      //  Log::error(print_r($persona,true));
+        //Log::error(print_r($persons,true));
 
         return new PersonCollection( $persons );
 
@@ -52,10 +52,10 @@ class ApiPersonController extends Controller
 
     public function show($id, Request $request)
     {
-        Log::error($id);
-        Log::error('print_r($requestall,true)');
-        Log::error($id);
-        Log::error(print_r($request->all(),true));
+       // Log::error($id);
+        //Log::error('print_r($requestall,true)');
+        //Log::error($id);
+        //Log::error(print_r($request->all(),true));
         return new PersonResource(Person::findOrFail($id));
     }
 
@@ -63,8 +63,8 @@ class ApiPersonController extends Controller
     {
 
         $allRequest = $request->all();
-        Log::error('print_r($requestall,true)');
-        Log::error(print_r($allRequest,true));
+       // Log::error('print_r($requestall,true)');
+       // Log::error(print_r($allRequest,true));
 
         /* END IMAGE */
         if( isset($allRequest['id']) && $allRequest['id'] ){
