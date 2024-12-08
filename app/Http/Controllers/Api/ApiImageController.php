@@ -128,31 +128,36 @@ class ApiImageController extends Controller
                 }
             }
 
-        }        
-        $modelProps = [
-            "title",
-            "alttext",
-            "year",
-            "person_id"
-        ];
-
-        /* END IMAGE */
-        if( isset($allRequest['id']) && $allRequest['id'] ){
-            $image = Image::find( $allRequest['id'] );
-            foreach( $allRequest as $key => $val){
-                if( in_array($key, $modelProps) ){
-                    $image[$key] = $val;
-                }
-            } 
-            $image->save();
         }
-        else{
-            $image = Image::create($allRequest);
+        else{        
+            // this is only for meta - how to distinguish?
+            $modelProps = [
+                "title",
+                "alttext",
+                "year",
+                "person_id"
+            ];
+
+            /* END IMAGE */
+            if( isset($allRequest['id']) && $allRequest['id'] ){
+                if( isset($allRequest['id']) && $allRequest['id'] ){
+                    $newImage = Image::find( $allRequest['id'] );
+                    foreach( $allRequest as $key => $val){
+                        if( in_array($key, $modelProps) ){
+                            $newImage[$key] = $val;
+                        }
+                    } 
+                    $newImage->save();
+                }
+                else{
+                    $newImage = Image::create($allRequest);
+                }
+            }
         }
         if( isset($request->artifact_id) && isset( $request->isPrimary ) && $request->isPrimary ){
             Log::error('has artifact');
             $artifact = Artifact::findOrFail($request->artifact_id);
-            $artifact->primary_image_id = $image->id;
+            $artifact->primary_image_id = $newImage->id;
             $artifact->save();
         }
         return new ImageResource($image);
