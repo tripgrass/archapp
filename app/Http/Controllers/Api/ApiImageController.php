@@ -61,7 +61,7 @@ class ApiImageController extends Controller
         $allRequest = $request->all();
         Log::error('print_r($requestall,true)');
         Log::error(print_r($allRequest,true));
-        if(isset($reqest->images)){
+        if(isset($request->images)){
             foreach( $request->images as $i => $image ){
                 if( 'web' == $source ){ 
 
