@@ -160,7 +160,7 @@ class ApiImageController extends Controller
             $artifact->primary_image_id = $newImage->id;
             $artifact->save();
         }
-        return new ImageResource($image);
+        return new ImageResource($newImage);
     }
 
     public function delete(Request $request)
