@@ -112,7 +112,6 @@ class ApiImageController extends Controller
                     $testImagesMeta = json_decode($request->imagesMeta[$i] );
         Log::error('print_r($testimagesmets)');
         Log::error(print_r($testImagesMeta,true));
-        Log::error($testImagesMeta->year);
 //        Log::error( json_decode($imagesMeta[0]));
 
 
