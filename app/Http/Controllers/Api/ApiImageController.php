@@ -72,7 +72,6 @@ class ApiImageController extends Controller
                     $imageData = ['name' => $imageName];
                     $newImage = Image::create($imageData);
 
-                    //$artifacts  = [1, 2];
 
                     $newImage->artifacts()->attach($artifact);            
                 }
@@ -108,10 +107,6 @@ class ApiImageController extends Controller
                     // Add image information to the array
                     $imageData = ['name' => $imageName];
                     $newImage = Image::create($imageData);
-
-                    //$artifacts  = [1, 2];
-
-                    $newImage->artifacts()->attach($artifact);            
                 }
                 if( $newImage && $imagesMeta && isset($imagesMeta[$i]) ){
                     $testImagesMeta = json_decode($imagesMeta[$i] );
@@ -154,11 +149,14 @@ class ApiImageController extends Controller
                 }
             }
         }
-        if( isset($request->artifact_id) && isset( $request->isPrimary ) && $request->isPrimary ){
-            Log::error('has artifact');
-            $artifact = Artifact::findOrFail($request->artifact_id);
-            $artifact->primary_image_id = $newImage->id;
-            $artifact->save();
+        if( isset($request->artifact_id) ){
+            if( isset( $request->isPrimary ) && $request->isPrimary ){
+                Log::error('has artifact');
+                $artifact = Artifact::findOrFail($request->artifact_id);
+                $artifact->primary_image_id = $newImage->id;
+                $artifact->save();
+            }
+            $newImage->artifacts()->attach($artifact_id);                        
         }
         return new ImageResource($newImage);
     }
