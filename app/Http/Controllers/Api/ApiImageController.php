@@ -115,8 +115,8 @@ class ApiImageController extends Controller
 //        Log::error( json_decode($imagesMeta[0]));
 
 
-                    $newImage->year = $testImagesMeta->year ? $testImagesMeta->year : null;
-                    $newImage->person_id = $testImagesMeta->person_id ? $testImagesMeta->person_id : null;
+                    $newImage->year = isset($testImagesMeta->year) ? $testImagesMeta->year : null;
+                    $newImage->person_id = isset($testImagesMeta->person_id) ? $testImagesMeta->person_id : null;
         Log::error(print_r($newImage,true));
                     $newImage->save();
                 }
