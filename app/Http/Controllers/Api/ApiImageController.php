@@ -108,7 +108,7 @@ class ApiImageController extends Controller
                     $imageData = ['name' => $imageName];
                     $newImage = Image::create($imageData);
                 }
-                if( $newImage && $request->imagesMeta && isset($request->imagesMeta[$i]) ){
+                if( $newImage && isset($request->imagesMeta) && isset($request->imagesMeta[$i]) ){
                     $testImagesMeta = json_decode($request->imagesMeta[$i] );
         Log::error('print_r($testimagesmets)');
         Log::error(print_r($testImagesMeta,true));
