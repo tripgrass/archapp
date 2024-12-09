@@ -63,7 +63,7 @@ class ApiImageController extends Controller
         Log::error(print_r($allRequest,true));
         if(isset($request->images)){
             foreach( $request->images as $i => $image ){
-                if( 'web' == $source ){ 
+                if( 'web' == $request->source ){ 
 
                     $imageName = $image->getClientOriginalName();
                     $image->move(public_path('images'), $imageName);
