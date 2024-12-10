@@ -42,7 +42,7 @@ class ApiArtifactController extends Controller
         }
         else{
 //        $artifacts = Artifact::where('temp', true)->get();
-        $artifacts = Artifact::whereNull('temp')->orWhere('temp', true)->get();
+        $artifacts = Artifact::whereNull('temp')->orWhere('temp', false)->get();
   
         }
         return new ArtifactCollection( $artifacts );
