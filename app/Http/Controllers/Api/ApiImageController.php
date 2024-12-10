@@ -149,9 +149,9 @@ class ApiImageController extends Controller
             }
         }
         if( isset($request->artifact_id) ){
+            $artifact = Artifact::findOrFail($request->artifact_id);
             if( isset( $request->isPrimary ) && $request->isPrimary ){
                 Log::error('has artifact on image lazy save');
-                $artifact = Artifact::findOrFail($request->artifact_id);
                 $artifact->primary_image_id = $newImage->id;
             }
             $artifact->temp = false;
