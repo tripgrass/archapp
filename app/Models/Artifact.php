@@ -32,6 +32,7 @@ class Artifact extends Model
         'zipcode',
         'eloGroup',
         'scale',
+        'temp',
         'primary_image_id'
     ];
 
