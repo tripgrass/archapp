@@ -72,112 +72,116 @@ class ApiArtifactController extends Controller
         $allRequest = $request->all();
         Log::error('print_r($requestall,true)');
         Log::error(print_r($allRequest,true));
-
-        if( isset($allRequest['latitude']) &&  isset($allRequest['longitude']) ){
-            $allRequest['location'] = new Point($allRequest['latitude'], $allRequest['longitude']);
-            unset( $allRequest['latitude'] );
-            unset( $allRequest['longitude'] );
-        }
-
-        $source = "";
-        if( isset($allRequest['images']) && $allRequest['images']){
-            $images = $allRequest['images'];
-            unset( $allRequest['images'] );
-            if( isset($allRequest['imagesMeta']) && $allRequest['imagesMeta']){
-                $imagesMeta = $allRequest['imagesMeta'];
-                unset( $allRequest['imagesMeta'] );
-            }
-            if( isset($allRequest['source']) ){
-                $source = $allRequest['source'];
-                unset( $allRequest['source'] );
-            }
-        }
-        unset( $allRequest['user_name'] );
-        unset( $allRequest['user_email'] );
-
-
-        /* END IMAGE */
-        if( isset($allRequest['id']) && $allRequest['id'] ){
-            $artifact = Artifact::find( $allRequest['id'] );
-            foreach( $allRequest as $key => $val){
-                $artifact[$key] = $val;
-            } 
-            $artifact->save();
+        if( isset( $request->idOnly ) ){
+            $artifact = Artifact::create();
         }
         else{
-            $artifact = Artifact::create($allRequest);
-        }
 
-        /* IMAGE */
-        if(isset($images)){
-            foreach( $images as $i => $image ){
-                if( 'web' == $source ){ 
-
-                    $imageName = $image->getClientOriginalName();
-                    $image->move(public_path('images'), $imageName);
-                    $filepath = public_path('images/'.$imageName);
-
-                    $imageData = ['name' => $imageName];
-                    $newImage = Image::create($imageData);
-
-                    //$artifacts  = [1, 2];
-
-                    $newImage->artifacts()->attach($artifact);            
-                }
-                else{
-                    $imageName = time() . '_' . uniqid() . '.' . $image->extension();
-
-                    // Move the image to the desired location
-                    $image->move(public_path('images'), $imageName);
-
-                    $filepath = public_path('images/'.$imageName);
-                    /*
-                    try {
-                        \Tinify\setKey(env("TINIFY_API_KEY"));
-                        $source = \Tinify\fromFile($filepath);
-                        $source->toFile($filepath);
-                    } catch(\Tinify\AccountException $e) {
-                        // Verify your API key and account limit.
-                        return redirect('upload')->with('error', $e->getMessage());
-                    } catch(\Tinify\ClientException $e) {
-                        // Check your source image and request options.
-                        return redirect('upload')->with('error', $e->getMessage());
-                    } catch(\Tinify\ServerException $e) {
-                        // Temporary issue with the Tinify API.
-                        return redirect('upload')->with('error', $e->getMessage());
-                    } catch(\Tinify\ConnectionException $e) {
-                        // A network connection error occurred.
-                        return redirect('upload')->with('error', $e->getMessage());
-                    } catch(Exception $e) {
-                        // Something else went wrong, unrelated to the Tinify API.
-                        return redirect('upload')->with('error', $e->getMessage());
-                    }            
-                    */
-                    // Add image information to the array
-                    $imageData = ['name' => $imageName];
-                    $newImage = Image::create($imageData);
-
-                    //$artifacts  = [1, 2];
-
-                    $newImage->artifacts()->attach($artifact);            
-                }
-                if( $newImage && $imagesMeta && isset($imagesMeta[$i]) ){
-                    $testImagesMeta = json_decode($imagesMeta[$i] );
-        Log::error('print_r($testimagesmets)');
-        Log::error(print_r($testImagesMeta,true));
-        Log::error($testImagesMeta->year);
-//        Log::error( json_decode($imagesMeta[0]));
-
-
-                    $newImage->year = $testImagesMeta->year ? $testImagesMeta->year : null;
-                    $newImage->person_id = $testImagesMeta->person_id ? $testImagesMeta->person_id : null;
-        Log::error(print_r($newImage,true));
-                    $newImage->save();
-                }
+            if( isset($allRequest['latitude']) &&  isset($allRequest['longitude']) ){
+                $allRequest['location'] = new Point($allRequest['latitude'], $allRequest['longitude']);
+                unset( $allRequest['latitude'] );
+                unset( $allRequest['longitude'] );
             }
 
-        }
+            $source = "";
+            if( isset($allRequest['images']) && $allRequest['images']){
+                $images = $allRequest['images'];
+                unset( $allRequest['images'] );
+                if( isset($allRequest['imagesMeta']) && $allRequest['imagesMeta']){
+                    $imagesMeta = $allRequest['imagesMeta'];
+                    unset( $allRequest['imagesMeta'] );
+                }
+                if( isset($allRequest['source']) ){
+                    $source = $allRequest['source'];
+                    unset( $allRequest['source'] );
+                }
+            }
+            unset( $allRequest['user_name'] );
+            unset( $allRequest['user_email'] );
 
+
+            /* END IMAGE */
+            if( isset($allRequest['id']) && $allRequest['id'] ){
+                $artifact = Artifact::find( $allRequest['id'] );
+                foreach( $allRequest as $key => $val){
+                    $artifact[$key] = $val;
+                } 
+                $artifact->save();
+            }
+            else{
+                $artifact = Artifact::create($allRequest);
+            }
+
+            /* IMAGE */
+            if(isset($images)){
+                foreach( $images as $i => $image ){
+                    if( 'web' == $source ){ 
+
+                        $imageName = $image->getClientOriginalName();
+                        $image->move(public_path('images'), $imageName);
+                        $filepath = public_path('images/'.$imageName);
+
+                        $imageData = ['name' => $imageName];
+                        $newImage = Image::create($imageData);
+
+                        //$artifacts  = [1, 2];
+
+                        $newImage->artifacts()->attach($artifact);            
+                    }
+                    else{
+                        $imageName = time() . '_' . uniqid() . '.' . $image->extension();
+
+                        // Move the image to the desired location
+                        $image->move(public_path('images'), $imageName);
+
+                        $filepath = public_path('images/'.$imageName);
+                        /*
+                        try {
+                            \Tinify\setKey(env("TINIFY_API_KEY"));
+                            $source = \Tinify\fromFile($filepath);
+                            $source->toFile($filepath);
+                        } catch(\Tinify\AccountException $e) {
+                            // Verify your API key and account limit.
+                            return redirect('upload')->with('error', $e->getMessage());
+                        } catch(\Tinify\ClientException $e) {
+                            // Check your source image and request options.
+                            return redirect('upload')->with('error', $e->getMessage());
+                        } catch(\Tinify\ServerException $e) {
+                            // Temporary issue with the Tinify API.
+                            return redirect('upload')->with('error', $e->getMessage());
+                        } catch(\Tinify\ConnectionException $e) {
+                            // A network connection error occurred.
+                            return redirect('upload')->with('error', $e->getMessage());
+                        } catch(Exception $e) {
+                            // Something else went wrong, unrelated to the Tinify API.
+                            return redirect('upload')->with('error', $e->getMessage());
+                        }            
+                        */
+                        // Add image information to the array
+                        $imageData = ['name' => $imageName];
+                        $newImage = Image::create($imageData);
+
+                        //$artifacts  = [1, 2];
+
+                        $newImage->artifacts()->attach($artifact);            
+                    }
+                    if( $newImage && $imagesMeta && isset($imagesMeta[$i]) ){
+                        $testImagesMeta = json_decode($imagesMeta[$i] );
+            Log::error('print_r($testimagesmets)');
+            Log::error(print_r($testImagesMeta,true));
+            Log::error($testImagesMeta->year);
+    //        Log::error( json_decode($imagesMeta[0]));
+
+
+                        $newImage->year = $testImagesMeta->year ? $testImagesMeta->year : null;
+                        $newImage->person_id = $testImagesMeta->person_id ? $testImagesMeta->person_id : null;
+            Log::error(print_r($newImage,true));
+                        $newImage->save();
+                    }
+                }
+
+            }
+        }
         $artifactResource = new ArtifactResource($artifact);
         /*
         return (new ArtifactResource($artifact))
