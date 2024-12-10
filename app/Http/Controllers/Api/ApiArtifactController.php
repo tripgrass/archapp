@@ -110,6 +110,7 @@ class ApiArtifactController extends Controller
                 foreach( $allRequest as $key => $val){
                     $artifact[$key] = $val;
                 } 
+                $artifact->temp = false;
                 $artifact->save();
             }
             else{
