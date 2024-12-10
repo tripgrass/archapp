@@ -76,6 +76,8 @@ class ApiArtifactController extends Controller
         Log::error(print_r($allRequest,true));
         if( isset( $request->idOnly ) ){
             $artifact = Artifact::create();
+            $artifact->temp(true);
+            $artifact->save();
         }
         else{
 
