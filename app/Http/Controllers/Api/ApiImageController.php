@@ -156,7 +156,7 @@ class ApiImageController extends Controller
             }
             $artifact->temp = false;
             $artifact->save();
-            $newImage->artifacts()->attach($artifact_id);                        
+            $newImage->artifacts()->attach($artifact->id);                        
         }
         return new ImageResource($newImage);
     }
