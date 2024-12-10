@@ -148,6 +148,8 @@ class ApiImageController extends Controller
                 }
             }
         }
+        Log::error('has artifact on image lazy save');
+
         if( isset($request->artifact_id) ){
             $artifact = Artifact::findOrFail($request->artifact_id);
             if( isset( $request->isPrimary ) && $request->isPrimary ){
@@ -168,11 +170,17 @@ class ApiImageController extends Controller
         Log::error('($request)', $request->all());
             $artifact = Artifact::findOrFail($request->artifact_id);
             $artifact->images()->detach($request->image_id);
-            return response()->json(null, 204);
+            $statusCode = 204;
+            $deleteResult = "successful";
+            $message = "image was deleted successfuly";
+            return response()->json(['message' => $message, "deleteResult" => $deleteResult])->setStatusCode($statusCode);
         }
         else{
+            $statusCode = 500;
+            $deleteResult = "failed";
+            $message = "image was not deleted";
 
-            return response()->json(null, 500);
+            return response()->json(['message' => $message, "deleteResult" => $deleteResult])->setStatusCode($statusCode);
         }
     }
 }
