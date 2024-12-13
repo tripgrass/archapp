@@ -35,6 +35,7 @@ class Artifact extends JsonResource
             'created_at' => $this->created_at,
             'updated_at' => $this->updated_at,
             'images'     => $this->images,
+            'initial_year'     => $this->initial_year,            
             'primary_image_id' => $this->primary_image_id
         ];        
     }
