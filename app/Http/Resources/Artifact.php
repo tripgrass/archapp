@@ -15,6 +15,9 @@ class Artifact extends JsonResource
     public function toArray(Request $request): array
     {
         //return parent::toArray($request);
+        foreach( $this->images as $key => $image ){
+            
+        }
         return [
             'id'         => $this->id,
             'name'       => $this->name,
@@ -28,6 +31,7 @@ class Artifact extends JsonResource
             'zipcode'   => $this->zipcode,
             'eloGroup'   => $this->eloGroup,            
             'scale'   =>    $this->scale,            
+            'grade'   =>    $this->grade,            
             'created_at' => $this->created_at,
             'updated_at' => $this->updated_at,
             'images'     => $this->images,

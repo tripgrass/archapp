@@ -33,6 +33,7 @@ class Artifact extends Model
         'eloGroup',
         'scale',
         'temp',
+        'grade',
         'primary_image_id'
     ];
 
