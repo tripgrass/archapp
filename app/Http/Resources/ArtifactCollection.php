@@ -26,6 +26,7 @@ class ArtifactCollection extends ResourceCollection
                 'id' => $artifact->id,
                 'name' => $artifact->name,
                 'grade' => $artifact->grade,
+                'description' => $artifact->description,
                 'initial_year' => $artifact->initial_year,
                 'latitude' => $artifact->location ? $artifact->location->latitude : null,
                 'longitude' => $artifact->location ? $artifact->location->longitude : null,
