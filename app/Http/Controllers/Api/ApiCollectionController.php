@@ -47,9 +47,9 @@ class ApiCollectionController extends Controller
   
         }
 //Log::error(print_r($collections, true ));
-                    $artifacts = Artifact::all();
+                    //$artifacts = Artifact::all();
 
-        return new CollectionResourceCollection( $artifacts );
+        return new CollectionResourceCollection( $collections );
 
     }
 
