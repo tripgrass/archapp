@@ -150,7 +150,7 @@ class ApiImageController extends Controller
         }
         Log::error('has artifact on image lazy save');
 
-        if( isset($request->artifact_id) && !$allRequest['id'] ){
+        if( isset($request->artifact_id)  ){
             $artifact = Artifact::findOrFail($request->artifact_id);
             if( isset( $request->isPrimary ) && $request->isPrimary ){
                 Log::error('has artifact on image lazy save');
@@ -158,7 +158,7 @@ class ApiImageController extends Controller
             }
             $artifact->temp = false;
             $artifact->save();
-            $newImage->artifacts()->attach($artifact->id);                        
+            $newImage->artifacts()->syncWithoutDetaching($artifact->id);                        
         }
         return new ImageResource($newImage);
     }
