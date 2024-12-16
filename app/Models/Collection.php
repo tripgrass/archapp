@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 Use App\Models\Artifact;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Collection extends Model
 {
