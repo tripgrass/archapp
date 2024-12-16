@@ -15,11 +15,11 @@ class CollectionResource extends ResourceCollection
      public function toArray(Request $request): array
     {
         return [
-                'id' => $collection->id,
-                'name' => $collection->name,
-                'artifacts' => $collection->artifacts,
-                'public' => $collection->public,
-                'user_id' => $collection->user_id
+                'id' => $this->id,
+                'name' => $this->name,
+                'artifacts' => $this->artifacts,
+                'public' => $this->public,
+                'user_id' => $this->user_id
             ];
     }
 }
