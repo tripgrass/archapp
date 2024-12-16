@@ -24,14 +24,7 @@ class CollectionResourceCollection extends ResourceCollection
 
             return [
                 'id' => $artifact->id,
-                'name' => $artifact->name,
-                'grade' => $artifact->grade,
-                'description' => $artifact->description,
-                'initial_year' => $artifact->initial_year,
-                'latitude' => $artifact->location ? $artifact->location->latitude : null,
-                'longitude' => $artifact->location ? $artifact->location->longitude : null,
-                'images' => $artifact->images,
-                'primaryImage' => $primaryImage
+                'name' => $artifact->name
             ];
         });
     }
