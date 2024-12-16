@@ -4,6 +4,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\Api\ApiArtifactController;
+use App\Http\Controllers\Api\ApiCollectionController;
 use App\Http\Controllers\Api\ApiImageController;
 use App\Http\Controllers\Api\ApiPersonController;
 use App\Http\Controllers\Api\ApiUserController;
