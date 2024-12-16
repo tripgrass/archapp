@@ -15,12 +15,12 @@ class CollectionResourceCollection extends ResourceCollection
      */
     public function toArray($request)
     {
-        return $this->collection->map(function ($thisModel) {
-Log::error(print_r($thisModel, true ));
+        return $this->collection->map(function ($collection) {
+//Log::error(print_r($thisModel, true ));
 
             return [
-                'nametest' => $thisModel->name,
-                'artifacts' => $thisModel->artifacts
+                'nametest' => $collection->name,
+                'artifacts' => $collection->artifacts
             ];
         });
     }
