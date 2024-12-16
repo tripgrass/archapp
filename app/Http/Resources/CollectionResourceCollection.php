@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\ResourceCollection;
 use App\Models\Image;
 
-class ArtifactCollection extends ResourceCollection
+class CollectionResourceCollection extends ResourceCollection
 {
     /**
      * Transform the resource collection into an array.
