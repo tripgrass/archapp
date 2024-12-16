@@ -4,10 +4,11 @@ namespace App\Http\Controllers\Api;
 
 use Illuminate\Http\Request;
 use App\Models\Artifact;
+use App\Models\Collection;
 use App\Models\Image;
 use App\Models\User;
 
-use App\Http\Resources\Collection as CollectionResource;
+use App\Http\Resources\CollectionResource as CollectionResource;
 use App\Http\Resources\CollectionResourceCollection;
 use Illuminate\View\View;
 use App\Http\Controllers\Controller;
