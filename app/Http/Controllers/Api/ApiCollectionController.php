@@ -41,6 +41,7 @@ class ApiCollectionController extends Controller
             $collections = Collection::all();
         }
         else{
+            $collections = Collection::all();
 //        $artifacts = ::whereNull('temp')->orWhere('temp', false)->get();
   
         }
