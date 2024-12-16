@@ -12,6 +12,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 Use App\Models\Image;
 Use App\Models\User;
 Use App\Models\Person;
+Use App\Models\Collection;
 
 /**
  * @property Point $location
@@ -59,5 +60,11 @@ class Artifact extends Model
     public function persons()
     {
         return $this->belongsToMany(Person::class, 'artifacts_persons', 'artifacts_id','persons_id');
-    }    
+    }   
+
+    public function collections()
+    {
+        return $this->belongsToMany(Collection::class, 'artifacts_collections', 'artifacts_id','collections_id');
+    }
+
 }
