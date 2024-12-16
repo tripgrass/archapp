@@ -12,18 +12,14 @@ class CollectionResource extends ResourceCollection
      *
      * @return array<int|string, mixed>
      */
-    public function toArray($request)
+     public function toArray(Request $request): array
     {
-        return $this->collection->map(function ($collection) {
-
-
-            return [
+        return [
                 'id' => $collection->id,
                 'name' => $collection->name,
                 'artifacts' => $collection->artifacts,
                 'public' => $collection->public,
                 'user_id' => $collection->user_id
             ];
-        });
     }
 }
