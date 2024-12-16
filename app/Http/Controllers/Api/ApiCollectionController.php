@@ -7,8 +7,8 @@ use App\Models\Artifact;
 use App\Models\Image;
 use App\Models\User;
 
-use App\Http\Resources\Artifact as ArtifactResource;
-use App\Http\Resources\ArtifactCollection;
+use App\Http\Resources\Collection as ArtifactResource;
+use App\Http\Resources\CollectionResourceCollection;
 use Illuminate\View\View;
 use App\Http\Controllers\Controller;
 use MatanYadaev\EloquentSpatial\SpatialBuilder;
