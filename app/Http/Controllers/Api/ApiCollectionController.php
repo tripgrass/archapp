@@ -46,7 +46,7 @@ class ApiCollectionController extends Controller
 //        $artifacts = ::whereNull('temp')->orWhere('temp', false)->get();
   
         }
-Log::error(print_r($collections, true ));
+//Log::error(print_r($collections, true ));
         return new CollectionResourceCollection( $collections );
 
     }

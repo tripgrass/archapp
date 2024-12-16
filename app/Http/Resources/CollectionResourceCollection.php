@@ -15,6 +15,8 @@ class CollectionResourceCollection extends ResourceCollection
     public function toArray($request)
     {
         return $this->collection->map(function ($thisModel) {
+Log::error(print_r($thisModel, true ));
+
             return [
                 'nametest' => $thisModel->name,
                 'artifacts' => $thisModel->artifacts
