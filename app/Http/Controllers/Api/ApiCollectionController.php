@@ -7,7 +7,7 @@ use App\Models\Artifact;
 use App\Models\Image;
 use App\Models\User;
 
-use App\Http\Resources\Collection as ArtifactResource;
+use App\Http\Resources\Collection as CollectionResource;
 use App\Http\Resources\CollectionResourceCollection;
 use Illuminate\View\View;
 use App\Http\Controllers\Controller;
