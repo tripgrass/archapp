@@ -14,11 +14,12 @@ class CollectionResourceCollection extends ResourceCollection
      */
     public function toArray($request)
     {
-        return $this->collection->map(function ($collection) {
+        return $this->collection->map(function ($thisModel) {
             return [
-                'id' => $collection->id,
-                'name' => $collection->name,
-                'artifacts' => $collection->artifacts
+
+                'id' => $thisModel->id,
+                'name' => $thisModel->name,
+                'artifacts' => $thisModel->artifacts
             ];
         });
     }
