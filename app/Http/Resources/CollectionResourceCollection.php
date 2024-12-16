@@ -16,7 +16,7 @@ class CollectionResourceCollection extends ResourceCollection
     {
         return $this->collection->map(function ($thisModel) {
             return [
-                'name' => $thisModel->name,
+                'nametest' => $thisModel->name,
                 'artifacts' => $thisModel->artifacts
             ];
         });
