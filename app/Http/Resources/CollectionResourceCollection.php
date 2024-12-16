@@ -19,8 +19,7 @@ class CollectionResourceCollection extends ResourceCollection
 //Log::error(print_r($thisModel, true ));
 
             return [
-                'nametest' => $collection->name,
-                'artifacts' => $collection->artifacts
+                'name' => "what"
             ];
         });
     }
