@@ -15,16 +15,11 @@ class CollectionResourceCollection extends ResourceCollection
      */
     public function toArray($request)
     {
-        return $this->collection->map(function ($artifact) {
-
-            $primaryImage = null;
-            if( $artifact->primary_image_id ){
-                $primaryImage = Image::findOrFail($artifact->primary_image_id);
-            }
+        return $this->collection->map(function ($coll) {
 
             return [
-                'id' => $artifact->id,
-                'name' => $artifact->name
+                'id' => $coll->id,
+                'name' => $coll->name
             ];
         });
     }
