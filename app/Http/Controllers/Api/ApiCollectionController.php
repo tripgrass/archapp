@@ -69,7 +69,7 @@ class ApiCollectionController extends Controller
         //Log::error('print_r($requestall,true)');
         //Log::error($id);
         //Log::error(print_r($request->all(),true));
-        return new ArtifactResource(Artifact::findOrFail($id));
+        return new CollectionResource(Collection::findOrFail($id));
     }
 
     public function store(Request $request)
