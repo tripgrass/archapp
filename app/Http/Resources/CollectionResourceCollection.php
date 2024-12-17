@@ -4,7 +4,6 @@ namespace App\Http\Resources;
 
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\ResourceCollection;
-use App\Models\Image;
 
 class CollectionResourceCollection extends ResourceCollection
 {
@@ -19,7 +18,8 @@ class CollectionResourceCollection extends ResourceCollection
 
             return [
                 'id' => $coll->id,
-                'name' => $coll->name
+                'name' => $coll->name,
+                'artifacts' => $coll->artifacts
             ];
         });
     }

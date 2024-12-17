@@ -14,13 +14,10 @@ class CollectionResource extends JsonResource
      */
     public function toArray(Request $request): array
     {
-        //return parent::toArray($request);
-        foreach( $this->images as $key => $image ){
-            
-        }
         return [
             'id'         => $this->id,
-            'name'       => $this->name
+            'name'       => $this->name,
+            'artifacts' => $this->artifacts
         ];        
     }
 }
