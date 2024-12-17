@@ -65,10 +65,10 @@ class ApiCollectionController extends Controller
 
     public function show($id, Request $request)
     {
-       // Log::error($id);
-        //Log::error('print_r($requestall,true)');
+       Log::error("in show for collection:" . $id);
+        Log::error('print_r($requestall,true)');
         //Log::error($id);
-        //Log::error(print_r($request->all(),true));
+        Log::error(print_r($request->all(),true));
         return new CollectionResource(Collection::findOrFail($id));
     }
 
