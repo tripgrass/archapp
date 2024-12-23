@@ -32,6 +32,7 @@ class ArtifactCollection extends ResourceCollection
                 'latitude' => $artifact->location ? $artifact->location->latitude : null,
                 'longitude' => $artifact->location ? $artifact->location->longitude : null,
                 'images' => $artifact->images,
+                'collections' => $artifact->collections,
                 'primaryImage' => $primaryImage
             ];
         });
