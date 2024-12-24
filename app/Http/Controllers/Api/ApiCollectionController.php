@@ -94,10 +94,7 @@ class ApiCollectionController extends Controller
                 }
             }
             if( isset($allRequest['artifacts']) && $allRequest['artifacts']){
-                $artifacts = [];
-                foreach( $allRequest['artifacts'] as $key => $artifact){
-                    $artifacts[] = $artifact->id;
-                };
+                $artifacts = $allRequest['artifacts'];
                 unset( $allRequest['artifacts'] );
             }
 
