@@ -43,11 +43,11 @@ class ApiCollectionController extends Controller
         }
         else{
             $collections = Collection::all();
-//        $artifacts = ::whereNull('temp')->orWhere('temp', false)->get();
+//        $collections = ::whereNull('temp')->orWhere('temp', false)->get();
   
         }
 //Log::error(print_r($collections, true ));
-                    //$artifacts = Artifact::all();
+                    //$collections = Collection::all();
 
         return new CollectionResourceCollection( $collections );
 
@@ -60,7 +60,7 @@ class ApiCollectionController extends Controller
         */
     public function create()
     {
-        return view('artifacts.create');
+        return view('collections.create');
     }
 
     public function show($id, Request $request)
@@ -79,26 +79,15 @@ class ApiCollectionController extends Controller
         Log::error('print_r($requestall,true)');
         Log::error(print_r($allRequest,true));
         if( isset( $request->idOnly ) ){
-            $artifact = Artifact::create();
-            $artifact->temp = true;
-            $artifact->save();
+            $collection = Collection::create();
+            $collection->save();
         }
         else{
-
-            if( isset($allRequest['latitude']) &&  isset($allRequest['longitude']) ){
-                $allRequest['location'] = new Point($allRequest['latitude'], $allRequest['longitude']);
-                unset( $allRequest['latitude'] );
-                unset( $allRequest['longitude'] );
-            }
 
             $source = "";
             if( isset($allRequest['images']) && $allRequest['images']){
                 $images = $allRequest['images'];
                 unset( $allRequest['images'] );
-                if( isset($allRequest['imagesMeta']) && $allRequest['imagesMeta']){
-                    $imagesMeta = $allRequest['imagesMeta'];
-                    unset( $allRequest['imagesMeta'] );
-                }
                 if( isset($allRequest['source']) ){
                     $source = $allRequest['source'];
                     unset( $allRequest['source'] );
@@ -110,15 +99,14 @@ class ApiCollectionController extends Controller
 
             /* END IMAGE */
             if( isset($allRequest['id']) && $allRequest['id'] ){
-                $artifact = Artifact::find( $allRequest['id'] );
+                $collection = Collection::find( $allRequest['id'] );
                 foreach( $allRequest as $key => $val){
-                    $artifact[$key] = $val;
+                    $collection[$key] = $val;
                 } 
-                $artifact->temp = false;
-                $artifact->save();
+                $collection->save();
             }
             else{
-                $artifact = Artifact::create($allRequest);
+                $collection = Collection::create($allRequest);
             }
 
             /* IMAGE */
@@ -133,9 +121,9 @@ class ApiCollectionController extends Controller
                         $imageData = ['name' => $imageName];
                         $newImage = Image::create($imageData);
 
-                        //$artifacts  = [1, 2];
+                        //$collections  = [1, 2];
 
-                        $newImage->artifacts()->attach($artifact);            
+                        $newImage->collections()->attach($collection);            
                     }
                     else{
                         $imageName = time() . '_' . uniqid() . '.' . $image->extension();
@@ -144,43 +132,17 @@ class ApiCollectionController extends Controller
                         $image->move(public_path('images'), $imageName);
 
                         $filepath = public_path('images/'.$imageName);
-                        /*
-                        try {
-                            \Tinify\setKey(env("TINIFY_API_KEY"));
-                            $source = \Tinify\fromFile($filepath);
-                            $source->toFile($filepath);
-                        } catch(\Tinify\AccountException $e) {
-                            // Verify your API key and account limit.
-                            return redirect('upload')->with('error', $e->getMessage());
-                        } catch(\Tinify\ClientException $e) {
-                            // Check your source image and request options.
-                            return redirect('upload')->with('error', $e->getMessage());
-                        } catch(\Tinify\ServerException $e) {
-                            // Temporary issue with the Tinify API.
-                            return redirect('upload')->with('error', $e->getMessage());
-                        } catch(\Tinify\ConnectionException $e) {
-                            // A network connection error occurred.
-                            return redirect('upload')->with('error', $e->getMessage());
-                        } catch(Exception $e) {
-                            // Something else went wrong, unrelated to the Tinify API.
-                            return redirect('upload')->with('error', $e->getMessage());
-                        }            
-                        */
+                        
                         // Add image information to the array
                         $imageData = ['name' => $imageName];
                         $newImage = Image::create($imageData);
 
-                        //$artifacts  = [1, 2];
+                        //$collections  = [1, 2];
 
-                        $newImage->artifacts()->attach($artifact);            
+                        $newImage->collections()->attach($collection);            
                     }
                     if( $newImage && $imagesMeta && isset($imagesMeta[$i]) ){
                         $testImagesMeta = json_decode($imagesMeta[$i] );
-            Log::error('print_r($testimagesmets)');
-            Log::error(print_r($testImagesMeta,true));
-            Log::error($testImagesMeta->year);
-    //        Log::error( json_decode($imagesMeta[0]));
-
 
                         $newImage->year = $testImagesMeta->year ? $testImagesMeta->year : null;
                         $newImage->person_id = $testImagesMeta->person_id ? $testImagesMeta->person_id : null;
@@ -191,14 +153,14 @@ class ApiCollectionController extends Controller
 
             }
         }
-        $artifactResource = new ArtifactResource($artifact);
+        $collectionResource = new CollectionResource($collection);
         /*
-        return (new ArtifactResource($artifact))
+        return (new ArtifactResource($collection))
                 ->response()
                 ->setStatusCode(201);
                 */
-                return $artifactResource;
-//        return response()->json(["artifact" => $artifactResource])->setStatusCode(201);                
+                return $collectionResource;
+//        return response()->json(["collection" => $collectionResource])->setStatusCode(201);                
     }
 
     public function delete(Request $request)
@@ -211,11 +173,11 @@ class ApiCollectionController extends Controller
         Log::error('IN INDEX for apiartofactconttroller print_r($requestall,true)');
 //        Log::error(print_r($request->all(), true ));
         }
-        $artifact = Artifact::findOrFail($request->id);
-        $artifact->images()->detach();
-        $artifact->persons()->detach();
-        $artifact->users()->detach();
-        $deleteResult = $artifact->delete();
+        $collection = Collection::findOrFail($request->id);
+        $collection->images()->detach();
+        $collection->persons()->detach();
+        $collection->users()->detach();
+        $deleteResult = $collection->delete();
         if( $deleteResult > 0 ){
             $message = "Artifact was soft deleted";
             $statusCode = 200;
