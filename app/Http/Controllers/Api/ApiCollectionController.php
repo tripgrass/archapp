@@ -93,6 +93,11 @@ class ApiCollectionController extends Controller
                     unset( $allRequest['source'] );
                 }
             }
+            if( isset($allRequest['artifacts']) && $allRequest['artifacts']){
+                $artifacts = $allRequest['artifacts'];
+                unset( $allRequest['artifacts'] );
+            }
+
             unset( $allRequest['user_name'] );
             unset( $allRequest['user_email'] );
 
