@@ -94,7 +94,7 @@ class ApiCollectionController extends Controller
                 }
             }
             if( isset($allRequest['artifacts']) && $allRequest['artifacts']){
-                $artifacts = $allRequest['artifacts'];
+                $artifacts = json_decode($allRequest['artifacts']);
                 unset( $allRequest['artifacts'] );
             }
 
