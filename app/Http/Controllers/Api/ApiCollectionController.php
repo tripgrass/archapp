@@ -118,7 +118,7 @@ class ApiCollectionController extends Controller
                Log::error("in create for collection:" );
                 Log::error( print_r($artifacts, true));
 
-                $collection->artifacts()->attach($artifacts);            
+                $collection->artifacts()->sync($artifacts);            
             }
             /* IMAGE */
             if(isset($images)){
