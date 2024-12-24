@@ -94,7 +94,10 @@ class ApiCollectionController extends Controller
                 }
             }
             if( isset($allRequest['artifacts']) && $allRequest['artifacts']){
-                $artifacts = $allRequest['artifacts'];
+                $artifacts = [];
+                foreach( $allRequest['artifacts'] as $key => $artifact){
+                    $artifacts[] = $artifact->id;
+                };
                 unset( $allRequest['artifacts'] );
             }
 
@@ -114,6 +117,12 @@ class ApiCollectionController extends Controller
                 $collection = Collection::create($allRequest);
             }
 
+            if(isset($artifacts)){
+               Log::error("in create for collection:" (;
+                Log::error( print_r($artifacts, true));
+
+                $collection->artifacts()->attach($artifacts);            
+            }
             /* IMAGE */
             if(isset($images)){
                 foreach( $images as $i => $image ){
