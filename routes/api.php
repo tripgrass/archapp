@@ -13,6 +13,7 @@ use App\Http\Controllers\Api\ApiUserController;
  
     Route::get('/collections', [ApiCollectionController::class, 'index']);
     Route::get('/collections/{id}', [ApiCollectionController::class, 'show']);
+    Route::post('/collections/store', [ApiCollectionController::class, 'store']);
     Route::get('/artifacts/{id}', [ApiArtifactController::class, 'show']);
     Route::post('register', [UserController::class, 'register']);
     Route::get('/persons', [ApiPersonController::class, 'index']);
