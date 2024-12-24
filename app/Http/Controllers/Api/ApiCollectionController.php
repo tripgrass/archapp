@@ -118,7 +118,7 @@ class ApiCollectionController extends Controller
             }
 
             if(isset($artifacts)){
-               Log::error("in create for collection:" (;
+               Log::error("in create for collection:" );
                 Log::error( print_r($artifacts, true));
 
                 $collection->artifacts()->attach($artifacts);            
