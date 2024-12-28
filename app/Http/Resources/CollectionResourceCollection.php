@@ -19,7 +19,8 @@ class CollectionResourceCollection extends ResourceCollection
             return [
                 'id' => $coll->id,
                 'name' => $coll->name,
-                'artifacts' => $coll->artifacts
+                'artifacts' => $coll->artifacts,
+                'description' => $coll->description
             ];
         });
     }
