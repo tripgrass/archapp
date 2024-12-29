@@ -22,7 +22,7 @@ class CollectionResource extends JsonResource
             'description' => $this->description,
             'artifacts' => $this->artifacts,
             'image_id' => $this->image_id,
-            'image' => Image::findOrFail($this->image_id)
+            'image' => ( $this->image_id ? Image::findOrFail($this->image_id) : null ) 
         ];        
     }
 }
