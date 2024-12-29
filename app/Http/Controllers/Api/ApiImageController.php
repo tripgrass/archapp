@@ -8,6 +8,7 @@ use App\Models\Persona;
 use App\Models\Artifact;
 use App\Models\Image;
 use App\Models\User;
+use App\Models\Collection;
 
 use App\Http\Resources\Artifact as ArtifactResource;
 use App\Http\Resources\ArtifactCollection;
