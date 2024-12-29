@@ -20,7 +20,9 @@ class CollectionResourceCollection extends ResourceCollection
                 'id' => $coll->id,
                 'name' => $coll->name,
                 'artifacts' => $coll->artifacts,
-                'description' => $coll->description
+                'description' => $coll->description,
+                'image' => $coll->image,
+                'image_id' => $coll->image_id                
             ];
         });
     }

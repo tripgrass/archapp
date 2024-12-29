@@ -160,6 +160,11 @@ class ApiImageController extends Controller
             $artifact->save();
             $newImage->artifacts()->syncWithoutDetaching($artifact->id);                        
         }
+        if( isset($request->collection_id)  ){
+            $collection = Collection::findOrFail($request->collection_id);
+            $collection->image_id = $newImage->id;
+            $collection->save();
+        }        
         return new ImageResource($newImage);
     }
 

@@ -16,7 +16,8 @@ class Collection extends Model
         'name',
         'user_id',
         'public',
-        'brand_id'
+        'brand_id',
+        'image_id'
     ];
 
     public function artifacts()
