@@ -84,6 +84,13 @@ class ApiCollectionController extends Controller
             $collection = Collection::create();
             $collection->save();
         }
+        elseif( isset( $request->detachImage ) ){
+            if( isset($allRequest['id']) && $allRequest['id'] ){
+                $collection = Collection::find( $allRequest['id'] );
+                $collection->image_id = null;
+                $collection->save();
+            }
+        }
         else{
 
             $source = "";
@@ -104,7 +111,6 @@ class ApiCollectionController extends Controller
             unset( $allRequest['user_email'] );
 
 
-            /* END IMAGE */
             if( isset($allRequest['id']) && $allRequest['id'] ){
                 $collection = Collection::find( $allRequest['id'] );
                 foreach( $allRequest as $key => $val){
