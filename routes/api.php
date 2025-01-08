@@ -8,6 +8,7 @@ use App\Http\Controllers\Api\ApiCollectionController;
 use App\Http\Controllers\Api\ApiImageController;
 use App\Http\Controllers\Api\ApiPersonController;
 use App\Http\Controllers\Api\ApiUserController;
+use App\Http\Controllers\Api\ApiEloController;
 
 //Route::post('register', [UserController::class, 'register']);
  
@@ -23,7 +24,9 @@ use App\Http\Controllers\Api\ApiUserController;
     Route::get('/images', [ApiImageController::class, 'index']);
     Route::get('/apiusers', [ApiUserController::class, 'index']);
 
-Route::middleware('auth:api')->group( function () {
+    Route::post('/elos/store', [EloCollectionController::class, 'store']);
+
+    Route::middleware('auth:api')->group( function () {
     Route::get('user', [UserController::class, 'userRecord']);
     Route::get('users', [UserController::class, 'userRecords']);
 //    Route::get('/artifacts', [ArtifactController::class, 'index']);
