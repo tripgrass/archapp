@@ -24,7 +24,7 @@ use App\Http\Controllers\Api\ApiEloController;
     Route::get('/images', [ApiImageController::class, 'index']);
     Route::get('/apiusers', [ApiUserController::class, 'index']);
 
-    Route::post('/elos/store', [EloCollectionController::class, 'store']);
+    Route::post('/elos/store', [ApiEloController::class, 'store']);
 
     Route::middleware('auth:api')->group( function () {
     Route::get('user', [UserController::class, 'userRecord']);
