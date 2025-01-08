@@ -55,8 +55,8 @@ class ApiEloController extends Controller
     {
 
         $allRequest = $request->all();
-       // Log::error('print_r($requestall,true)');
-       // Log::error(print_r($allRequest,true));
+        Log::error('print_r($requestall,true)');
+        Log::error(print_r($allRequest,true));
 
         /* END IMAGE */
         if( isset($allRequest['id']) && $allRequest['id'] ){
