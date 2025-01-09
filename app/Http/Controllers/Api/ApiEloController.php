@@ -131,17 +131,17 @@ $mFactor = 400;
         $Expected_Rating_One = 1 / (1 + pow(10, ( ($R1_existing - $R2_existing) / $mFactor ) ) );
         $Expected_Rating_Two = 1 / (1 + pow(10, ( ($R2_existing - $R1_existing) / $mFactor ) ) );
 
-        if( 5 > $request->comparison ){
+        if( 4 > $request->comparison ){
             // favors relationshipOne
-            $scoreOne = ( 5 - $request->comparison );
+            $scoreOne = ( 4 - $request->comparison );
             $scoreTwo = 0;
         }
-        if( 5 < $request->comparison ){
+        if( 4 < $request->comparison ){
             // favors relationshipTwo
-            $scoreTwo = ( $request->comparison - 5);
+            $scoreTwo = ( $request->comparison - 4);
             $scoreOne = 0;
         }        
-        if( 5 == $request->comparison ){
+        if( 4 == $request->comparison ){
             $scoreOne = 0;
             $scoreTwo = 0;
         }
