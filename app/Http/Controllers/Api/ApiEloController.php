@@ -80,7 +80,7 @@ class ApiEloController extends Controller
         $allRequest = $request->all();
         Log::error('print_r($requestall,true)');
         Log::error(print_r($allRequest,true));
-
+        $category = $request->category ? $request->category : 'general';
         /* END IMAGE */
         //'secondary_artifact_one_id'
         //'rating_signatory_one'
