@@ -25,6 +25,7 @@ use App\Http\Controllers\Api\ApiEloController;
     Route::get('/apiusers', [ApiUserController::class, 'index']);
 
     Route::post('/elos/store', [ApiEloController::class, 'store']);
+    Route::post('/elos/storeCompare', [ApiEloController::class, 'storeCompare']);
 
     Route::middleware('auth:api')->group( function () {
     Route::get('user', [UserController::class, 'userRecord']);
