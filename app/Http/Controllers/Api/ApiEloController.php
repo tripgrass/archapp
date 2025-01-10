@@ -78,7 +78,7 @@ class ApiEloController extends Controller
     {
 
         $allRequest = $request->all();
-        Log::error('print_r($requestall,true)');
+        Log::error('STORE COMPARE print_r($requestall,true)');
         Log::error(print_r($allRequest,true));
         $category = $request->category ? $request->category : 'general';
         /* END IMAGE */
