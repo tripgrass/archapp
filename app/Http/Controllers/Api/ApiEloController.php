@@ -169,7 +169,7 @@ $mFactor = 400;
         }
         $relationshipOne->save();
         $relationshipTwo->save();        
-        return (new EloResource($relationshipOne))
+        return (new EloCollection([$relationshipOne, $relationshipTwo]))
                 ->response()
                 ->setStatusCode(201);
     }    
