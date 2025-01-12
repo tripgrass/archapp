@@ -19,19 +19,26 @@ $elos = Elo::orderBy('rating_signatory', 'ASC')->get();
 <?php $primary_artifact = Artifact::find($elo->primary_artifact_id); 
 ?>
 <?php $secondary_artifact = Artifact::find($elo->secondary_artifact_id); ?>
+<?php if( $primary_artifact && $secondary_artifact ) : ?>
                     <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                         <div class="p-6 text-gray-900">
                             {{$primary_artifact->name}}
-                            <img src="{{URL::asset('/images/' .  $primary_artifact->images[0]->name )}}"  height="auto" width="50">
+                            <?php if( isset( $primary_artifact->images[0] ) ) : ?> 
+                                <img src="{{URL::asset('/images/' .  $primary_artifact->images[0]->name )}}"  height="auto" width="50">
+                            <?php endif; ?>
                             <h3>{{$elo->rating_signatory}}</h3>
                         </div>
                     </div>
                     <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                         <div class="p-6 text-gray-900">
                             {{$secondary_artifact->name}}
+                            <?php if( isset( $secondary_artifact->images[0] ) ) : ?> 
                             <img src="{{URL::asset('/images/' .  $secondary_artifact->images[0]->name )}}"  height="auto" width="50">
+                        <?php endif; ?>
                         </div>
-                    </div>            
+                    </div>     
+<?php endif; ?>
+
 @endforeach                    
                 </div>       
                 <div class="grid gap-6 lg:grid-cols-1 lg:gap-8">

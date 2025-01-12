@@ -44,22 +44,26 @@ $elos = Elo::orderBy('rating_signatory', 'ASC')->get();
             $thisNode = new StdClass();
             $thisNode->id = $elo->secondary_artifact_id;
             $secondary_artifact = Artifact::find($elo->secondary_artifact_id); 
+            if( $secondary_artifact ){
             
-            $thisNode->group = $secondary_artifact->eloGroup;
-            $nodes[] = $thisNode;
-            $nodeExcludes[] = $elo->secondary_artifact_id;
+                $thisNode->group = $secondary_artifact->eloGroup;
+                $nodes[] = $thisNode;
+                $nodeExcludes[] = $elo->secondary_artifact_id;
+            }
         }
-        $thisLink = new StdClass();
-        $thisLink->source = $elo->primary_artifact_id;
-        $thisLink->target = $elo->secondary_artifact_id;
-        if( $elo->rating_signatory < 5 ){
-            $rating = 0;
+        if( $primary_artifact && $secondary_artifact ){
+            $thisLink = new StdClass();
+            $thisLink->source = $elo->primary_artifact_id;
+            $thisLink->target = $elo->secondary_artifact_id;
+            if( $elo->rating_signatory < 5 ){
+                $rating = 0;
+            }
+            else{
+                $rating = $elo->rating_signatory ;
+            }
+            $thisLink->value = $rating;
+            $links[] = $thisLink;
         }
-        else{
-            $rating = $elo->rating_signatory ;
-        }
-        $thisLink->value = $rating;
-        $links[] = $thisLink;
 //        $primary_artifact = Artifact::find($elo->primary_artifact_id); 
   //      $secondary_artifact = Artifact::find($elo->secondary_artifact_id);
     }
