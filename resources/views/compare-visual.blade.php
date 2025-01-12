@@ -51,11 +51,11 @@ $elos = Elo::orderBy('rating_signatory', 'ASC')->get();
                 $nodeExcludes[] = $elo->secondary_artifact_id;
             }
         }
-        if( $primary_artifact && $secondary_artifact ){
+        //if( $primary_artifact && $secondary_artifact ){
             $thisLink = new StdClass();
             $thisLink->source = $elo->primary_artifact_id;
             $thisLink->target = $elo->secondary_artifact_id;
-            if( $elo->rating_signatory < 5 ){
+            if( $elo->rating_signatory < 0 ){
                 $rating = 0;
             }
             else{
@@ -63,7 +63,7 @@ $elos = Elo::orderBy('rating_signatory', 'ASC')->get();
             }
             $thisLink->value = $rating;
             $links[] = $thisLink;
-        }
+
 //        $primary_artifact = Artifact::find($elo->primary_artifact_id); 
   //      $secondary_artifact = Artifact::find($elo->secondary_artifact_id);
     }
@@ -74,6 +74,7 @@ $elos = Elo::orderBy('rating_signatory', 'ASC')->get();
         "nodes" : <?php echo json_encode( $nodes ); ?>,
         "links" : <?php echo json_encode( $links ); ?>,
     };
+    console.log('data',data);
 </script>
 <x-app-layout>
     <x-slot name="header">
