@@ -25,7 +25,7 @@ class Artifact extends JsonResource
             'latitude' => $this->location ? $this->location->latitude : "",
             'longitude' => $this->location ? $this->location->longitude : "",            
             'area'   => $this->area ? $this->area : "",
-            'address'   => $this->address ? $this->address :,
+            'address'   => $this->address ? $this->address : "",
             'city'   => $this->city ? $this->city : "" ,
             'state'   => $this->state,
             'zipcode'   => $this->zipcode,
