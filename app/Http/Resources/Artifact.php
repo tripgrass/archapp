@@ -19,14 +19,14 @@ class Artifact extends JsonResource
             
         }
         return [
-            'id'         => $this->id,
-            'name'       => $this->name,
-            'location'   => $this->location,
-            'latitude' => $this->location ? $this->location->latitude : null,
-            'longitude' => $this->location ? $this->location->longitude : null,            
-            'area'   => $this->area,
-            'address'   => $this->address,
-            'city'   => $this->city,
+            'id'         => $this->id ? $this->id : "",
+            'name'       => $this->name ? $this->name : "",
+            'location'   => $this->location ? $this->location : "",
+            'latitude' => $this->location ? $this->location->latitude : "",
+            'longitude' => $this->location ? $this->location->longitude : "",            
+            'area'   => $this->area ? $this->area : "",
+            'address'   => $this->address ? $this->address :,
+            'city'   => $this->city ? $this->city : "" ,
             'state'   => $this->state,
             'zipcode'   => $this->zipcode,
             'eloGroup'   => $this->eloGroup,            
