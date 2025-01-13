@@ -23,17 +23,17 @@ class ArtifactCollection extends ResourceCollection
             }
 
             return [
-                'id' => $artifact->id,
-                'name' => $artifact->name,
-                'grade' => $artifact->grade,
-                'description' => $artifact->description,
-                'address' => $artifact->address,
-                'initial_year' => $artifact->initial_year,
-                'latitude' => $artifact->location ? $artifact->location->latitude : null,
-                'longitude' => $artifact->location ? $artifact->location->longitude : null,
-                'images' => $artifact->images,
-                'collections' => $artifact->collections,
-                'primaryImage' => $primaryImage
+                'id' => $artifact->id ? $artifact->id : "",
+                'name' => $artifact->name ? $artifact->name : "",
+                'grade' => $artifact->grade ? $artifact->grade : "",
+                'description' => $artifact->description ? $artifact->description : "",
+                'address' => $artifact->address ? $artifact->address : "",
+                'initial_year' => $artifact->initial_year ? $artifact->initial_year : "",
+                'latitude' => $artifact->location ? $artifact->location->latitude : "",
+                'longitude' => $artifact->location ? $artifact->location->longitude : "",
+                'images' => $artifact->images ? $artifact->images : "",
+                'collections' => $artifact->collections ? $artifact->collections : "",
+                'primaryImage' => $primaryImage ? $primaryImage : ""
             ];
         });
     }

@@ -2,7 +2,7 @@
     use App\Models\Artifact;
     use App\Models\Elo;
 $elos = Elo::orderBy('rating_signatory', 'ASC')->get();
-
+//print_r($elos);
 ?>
 <script>
     var dataVoid = {
