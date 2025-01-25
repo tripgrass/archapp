@@ -74,7 +74,7 @@ class ApiImageController extends Controller
                     $newImage = Image::create($imageData);
 
 
-                    $newImage->artifacts()->attach($artifact);            
+                   // $newImage->artifacts()->attach($artifact);            
                 }
                 else{
                     $imageName = time() . '_' . uniqid() . '.' . $image->extension();
