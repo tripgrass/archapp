@@ -26,6 +26,8 @@ class Artifact extends Model
     protected $fillable = [
         'name',
         'location',
+        'latitude',
+        'longitude',
         'area',
         'address',
         'city',
@@ -45,6 +47,13 @@ class Artifact extends Model
         'area' => Polygon::class,
         'deleted_at' => 'datetime'
     ];
+
+    public function __construct(array $attributes = array()){
+        parent::__construct($attributes);
+        $this->latitude = "1234";
+        $this->longitude = "8910";
+    }
+
     public function images()
     {
         return $this->belongsToMany(Image::class, 'artifacts_images', 'artifacts_id','images_id');
