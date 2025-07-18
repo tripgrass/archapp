@@ -4,6 +4,7 @@ namespace App\Http\Resources;
 
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
+use App\Models\Post;
 
 class Artifact extends JsonResource
 {
@@ -18,6 +19,7 @@ class Artifact extends JsonResource
         foreach( $this->images as $key => $image ){
             
         }
+        $posts = Post::published()->hasMetaLike('artifact', '%' . $this->id . '%')->first();        
         return [
             'id'         => $this->id ? $this->id : "",
             'name'       => $this->name ? $this->name : "",
@@ -38,7 +40,8 @@ class Artifact extends JsonResource
             'collections'     => $this->collections,
             'initial_year'     => $this->initial_year,            
             'description'     => $this->description ? $this->description : "",            
-            'primary_image_id' => $this->primary_image_id
+            'primary_image_id' => $this->primary_image_id,
+            'posts' => $posts
         ];        
     }
 }

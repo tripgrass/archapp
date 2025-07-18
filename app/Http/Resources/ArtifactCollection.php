@@ -33,7 +33,8 @@ class ArtifactCollection extends ResourceCollection
                 'longitude' => $artifact->location ? $artifact->location->longitude : "",
                 'images' => $artifact->images ? $artifact->images : "",
                 'collections' => $artifact->collections ? $artifact->collections : "",
-                'primaryImage' => $primaryImage ? $primaryImage : ""
+                'primaryImage' => $primaryImage ? $primaryImage : "",
+                'posts' => $artifact->posts
             ];
         });
     }
