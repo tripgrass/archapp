@@ -36,6 +36,16 @@ define( 'DB_CHARSET', 'utf8' );
 define( 'DB_COLLATE', '' );
 
 
+define( 'LARAVEL_DB_NAME', 'archapp' );
+
+/** Database username */
+define( 'LARAVEL_DB_USER', 'root' );
+
+/** Database password */
+define( 'LARAVEL_DB_PASSWORD', '' );
+
+define( 'LARAVEL_DB_HOST', "127.0.0.1");
+
 /**#@+
  * Authentication unique keys and salts.
  *

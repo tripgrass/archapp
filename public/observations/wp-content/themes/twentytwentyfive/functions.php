@@ -9,22 +9,14 @@
  * @since Twenty Twenty-Five 1.0
  */
 
-	$DB_USER = "root";
-	$DB_PASSWORD = "";
-	$DB_NAME = "archapp";
-	$DB_HOST = "127.0.0.1";
-	$appdb = new wpdb($DB_USER, $DB_PASSWORD, $DB_NAME, $DB_HOST);
-	$query = $appdb->prepare('SELECT * FROM archapp.artifacts WHERE 1');
-	$result = $appdb->get_results($query);
-print_r($result);
-
 function acf_load_artifact_field_choices( $field ) {
-	$DB_USER = "root";
-	$DB_PASSWORD = "";
-	$DB_NAME = "archapp";
-	$DB_HOST = "127.0.0.1";
+	$DB_NAME = LARAVEL_DB_NAME;
+	$DB_USER = LARAVEL_DB_USER;
+	$DB_PASSWORD = LARAVEL_DB_PASSWORD;
+	$DB_HOST = LARAVEL_DB_HOST;
 	$appdb = new wpdb($DB_USER, $DB_PASSWORD, $DB_NAME, $DB_HOST);
 	$query = $appdb->prepare('SELECT * FROM archapp.artifacts WHERE 1');
+
 	$result = $appdb->get_results($query);
     
     // Reset choices
