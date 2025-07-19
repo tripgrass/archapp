@@ -3,6 +3,7 @@
 /public/build
 /public/hot
 /public/storage
+/public_html/public/observations/wp-config.php
 /storage/*.key
 /vendor
 .env
