@@ -19,7 +19,7 @@ class Artifact extends JsonResource
         foreach( $this->images as $key => $image ){
             
         }
-        $posts = Post::published()->hasMetaLike('artifact', '%' . $this->id . '%')->first();        
+        $posts = Post::published()->hasMetaLike('artifact', '%' . $this->id . '%')->get();        
         return [
             'id'         => $this->id ? $this->id : "",
             'name'       => $this->name ? $this->name : "",
