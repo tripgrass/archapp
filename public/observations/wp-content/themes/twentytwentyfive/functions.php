@@ -9,7 +9,14 @@
  * @since Twenty Twenty-Five 1.0
  */
 
-
+	$DB_USER = "root";
+	$DB_PASSWORD = "";
+	$DB_NAME = "archapp";
+	$DB_HOST = "127.0.0.1";
+	$appdb = new wpdb($DB_USER, $DB_PASSWORD, $DB_NAME, $DB_HOST);
+	$query = $appdb->prepare('SELECT * FROM archapp.artifacts WHERE 1');
+	$result = $appdb->get_results($query);
+print_r($result);
 
 function acf_load_artifact_field_choices( $field ) {
 	$DB_USER = "root";

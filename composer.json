@@ -12,7 +12,6 @@
         "laravel/tinker": "^2.9",
         "matanyadaev/laravel-eloquent-spatial": "^4.3",
         "spatie/laravel-permission": "^6.10",
-        "statamic/cms": "^5.40",
         "tinify/tinify": "^1.6"
     },
     "require-dev": {
@@ -40,8 +39,7 @@
     "scripts": {
         "post-autoload-dump": [
             "Illuminate\\Foundation\\ComposerScripts::postAutoloadDump",
-            "@php artisan package:discover --ansi",
-            "@php artisan statamic:install --ansi"             
+            "@php artisan package:discover --ansi"
         ],
         "post-update-cmd": [
             "@php artisan vendor:publish --tag=laravel-assets --ansi --force"
@@ -53,10 +51,7 @@
             "@php artisan key:generate --ansi",
             "@php -r \"file_exists('database/database.sqlite') || touch('database/database.sqlite');\"",
             "@php artisan migrate --graceful --ansi"
-        ],
-        "pre-update-cmd": [ 
-            "Statamic\\Console\\Composer\\Scripts::preUpdateCmd" 
-        ]          
+        ]
     },
     "extra": {
         "laravel": {
