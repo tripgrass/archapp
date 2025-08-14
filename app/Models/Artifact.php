@@ -50,8 +50,8 @@ class Artifact extends Model
 
     public function __construct(array $attributes = array()){
         parent::__construct($attributes);
-        $this->latitude = "1234";
-        $this->longitude = "8910";
+        //$this->latitude = "1234";
+        //$this->longitude = "8910";
     }
 
     public function images()
